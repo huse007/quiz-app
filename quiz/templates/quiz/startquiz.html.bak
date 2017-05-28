@@ -1,0 +1,24 @@
+{% extends 'quiz/info.html' %}
+{% block content %}
+<!--{% for question in question_list %}
+{{ question }}<br>
+{% for choice in choice_list %}
+{{ choice }}<br>
+{% endfor %}
+{% endfor %}
+  -->
+<div class="infotext">
+{% for question in question_list %}
+<h1>{{ question }}</h1>
+{% for choice in question.choice_set.all %}
+<input type="checkbox">{{choice}}</input><br>
+{% endfor %}
+{% endfor %}
+<input type="submit" value="Confirm">
+</div>
+<div class="infotext">
+  <p>Ny blokk</p>
+  {{form.as_p}}
+</div>
+
+{% endblock content %}

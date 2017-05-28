@@ -1,0 +1,36 @@
+from django import forms
+from .models import Person,Question,Choice
+from django.forms.widgets import RadioSelect
+#from django.forms.CheckboxSelectMultiple
+class PersonForm(forms.ModelForm):
+        class Meta:
+                model=Person
+                fields = ['first_name','last_name','user_name','password']
+                widgets = {
+                        'first_name':forms.TextInput(attrs={'class':'register'}),
+                        'last_name':forms.TextInput(attrs={'class':'register'}),
+                        'user_name':forms.TextInput(attrs={'class':'register'}),
+                        'password':forms.TextInput(attrs={'class':'register'}),
+                }
+class UserForm(forms.ModelForm):
+        class Meta:
+                print("hei på deg")
+                model=Person
+                fields = ['user_name','password']
+                widgets = {
+                        'user_name':forms.TextInput(attrs={'class':'register'}),
+                        'password':forms.TextInput(attrs={'class':'register'}),
+                }
+                
+class QuestionForm(forms.Form):
+        q = Question.objects.get(pk=1)
+        fields = [q.question_name,"user_name"]
+        authors = forms.ModelMultipleChoiceField(queryset=Person.objects.all())
+                
+class MyForm(forms.Form):
+        i=1
+        c = Choice.objects.all()
+        q = Question.objects.get(pk=i)
+        letters = forms.ModelChoiceField(c,"Answers",label=q)
+
+

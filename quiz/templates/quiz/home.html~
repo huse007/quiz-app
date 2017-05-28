@@ -1,0 +1,7 @@
+{% extends 'quiz/info.html' %}
+{% block content %}
+<div class="infotext">
+  <p>You are logged in as {{user}}.</p>
+  {{ form.as_p }}
+</div>
+{% endblock content %}

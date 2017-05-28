@@ -1,0 +1,19 @@
+{% extends 'quiz/base.html' %}
+
+{% block menu %}
+<div class="menubar">
+  <ul>
+    <a href="/info">Home</a>
+    <a href="/categories">Categories</a>
+<!--    <a href="/login">Login</a>-->
+    <a href="#">About</a>
+    <a class="status" href="/{{status}}">{{status}}</a>
+  </ul>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="infotext">
+  <p>Welcome to the biggest quiz database on the internet. Here you will find free quizzes in different categories. If you register an account, you can keep track of your score and monitor your improvement. </p>
+</div>
+{% endblock %}

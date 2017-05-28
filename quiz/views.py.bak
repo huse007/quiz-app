@@ -1,0 +1,80 @@
+from django.shortcuts import render,redirect
+from .models import Question,Choice,Person,Category
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+#from .forms import LoginForm
+from .forms import PersonForm, UserForm
+from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.dispatch import receiver
+from django.contrib.auth.signals import user_logged_in,user_logged_out
+# Create your views here.
+status = "login"
+def signup(request):
+    if request.method=='POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username = username,password = raw_password)
+            login(request,user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'quiz/signup.html',{'form':form})
+    
+def question_list(request):
+    questions = Question.objects.all()
+    return render(request, 'quiz/question_list.html',{'questions':questions})
+def startpage(user):
+    print("startpage_metoden")
+    return render(request, 'quiz/startpage.html',{})
+
+@login_required
+def home(request):
+    return render(request,'quiz/home.html',{'status':status})
+
+def categories(request):
+    categories = Category.objects.all()
+    return render(request, 'quiz/categories.html',{'categories':categories,'status':status})
+
+@login_required
+def startquiz(request):
+    return render(request, 'quiz/startquiz.html',{'status':status})
+    
+def base(request):
+    return render(request, 'quiz/base.html',{})
+def info(request):
+    return render(request, 'quiz/info.html',{"status":status})
+
+def user(request):
+    return render(request, 'quiz/user.html',{})
+
+def register(request):
+    title='Welcome'
+    form = PersonForm(request.POST or None)
+    context={"title":title,"form":form}
+    if form.is_valid():
+        form.save()
+        #instance = form.save(commit=False)
+        #print(instance)
+        context = {"title":"Thanks"}
+        
+        return redirect("/user")
+    return render(request,"quiz/register.html",context)
+#def Logout(request):
+#    logout(request)
+#    return redirect("/info")
+
+@receiver(user_logged_in)
+def logged_in(request,**kwargs):
+    global status
+    status="logout"
+    print("You logged out. Fixing status.")
+@receiver(user_logged_out)
+def logged_out(request,**kwargs):
+    global status
+    status = "login"
+    print("You logged in. Fixing status.")

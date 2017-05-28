@@ -1,0 +1,13 @@
+{% extends 'quiz/info.html' %}
+
+{% block content %}  
+  <div class="infotext">
+    <h2>Register</h2>
+  
+  <form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Sign Up</button>
+  </form>
+  </div>
+{% endblock content%}
+

@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href ="{% static 'quiz/style.css'%}">
+  </head>
+  <body>
+    <div class="page-header">
+      <h1>Welcome To Anders' Quiz App</h1>
+    </div>
+    <div class="choices">
+      <div>
+      	<h1>Login</h1>
+      </div>
+      <form action="/main/quiz" method="post">
+	<p>Username:</p>
+	<input id="your_name" type="text" name="old_username" value="">
+	<p>Password:</p>
+	<input id="your_password" type="text" name="old_password" value="">
+	<br><br>
+	<input type="submit" value="Log In">
+      </form>
+      <div>
+	<h1>Register</h1>
+      </div>
+      <form action="/loggedin/" method="post">
+	<p>Username:</p>
+	<input id="your_name" type="text" name="new_username" value="">
+      <p>Password:</p>
+      <input id="your_password" type="text" name="new_password" value="">
+      <br><br>
+      <input type="submit" value="Register">
+      </form>
+    </div>
+  </body>
+</html>

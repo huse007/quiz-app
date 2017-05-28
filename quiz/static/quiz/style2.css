@@ -1,0 +1,133 @@
+body {
+    background-color:PapayaWhip;
+}
+.page-header {
+    background-color: #ff9400;
+    margin-top: 0;
+    margin-bottom:0;
+    padding: 20px 20px 20px 40px;
+}
+.page-header h1 {
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+
+}
+
+.content {
+    margin-left: 60px;
+}
+
+h1, h2, h3, h4 {
+    font-family: Lobster, cursive;
+}
+
+h1 {
+    padding-left:40px;
+}
+
+p {
+    font-size:18pt;
+}
+button {
+    padding-left:40px;
+}
+a.status {position:absolute; right:80px; color:white;}
+a {
+    color:white;
+}
+a.links {
+    color:blue;
+    font-size:20pt;
+    padding-left:20px;
+    font-family:Courier;
+}
+/*div {display:block; background-color:Wheat;}*/
+div.choices {display:block; color:black; background-color:PapayaWhip;padding-left:20px;padding-right:20px;}
+/*div.mainwindow {display:block; color:black; background-color:PapayaWhip;padding-left:20px;padding-right:20px;}*/
+div.menubar {display:block; background-color:#ff9400; font-size:20pt;font-family:Lobster;word-spacing:2em;padding-left:40px;}
+div.infotext {display:block; margin-left:80px; margin-right:500px;background-color:Wheat;font-family:Courier;padding:20px 20px 20px 20px;background-color: #fff;background-image:linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),linear-gradient(#eee .1em, transparent .1em);background-size: 100% 1.2em;}
+div.question {display:block; margin-left:80px; margin-right:500px;background-color:Wheat;font-family:Courier;padding:20px 20px 20px 20px;}
+.register {padding-left:0px;display:block;font-size:18pt;}
+a.categories {color:black;font-family:Lobster;font-size:20pt;padding-left:60pt;margin-top:40pt;}
+/*button.choicebuttons {background-color:#ff9400;font-size:20pt; width:500px;border-radius:15px;border-image-slice:124;}*/
+/*-webkit-border-radius:3em/1em;-moz-border-radius:3em/1em;border-radius:3em/1em;}*/
+.buttonclass {
+    -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+    background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+    background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
+    background-color:#7892c2;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:1px solid #4e6096;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:19px;
+    padding:12px 37px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #283966;
+    width:500px;
+}
+.buttonclass:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
+    background:-moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background:-webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background:-o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background:-ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
+    background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
+    background-color:#476e9e;
+}
+.buttonclass:active {
+    position:relative;
+    top:1px;
+}
+#progressBar {
+    width: 100%;
+    background-color:PapayaWhip;/*#ddd;*/
+    text-align:center;
+    line-height:50px;
+    font-size:20pt;
+    font-family:Lobster;
+    
+}
+
+#bar {
+    width: 0%;
+    height: 50px;
+    background-color: #476e9e; /*#4CAF50;*/
+}
+#scoreBar {
+    width: 100%;
+    background-color:PapayaWhip;/*#ddd;*/
+}
+
+#sbar {
+    width: 0%;
+    height: 50px;
+    background-color: #476e9e; /*#4CAF50;*/
+
+    width: 10%;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 50px; /* To center it vertically */
+    color: white;
+    font-size:20pt;
+    font-family:Lobster;
+}
+
+div.quizframe {/*border-style:solid;border-style:inset;border-width:10px;*/display:block; margin-left:80px; margin-right:915px;background-color:#9999ff;font-family:Courier;padding:20px 20px 20px 20px;}
+/*#ff9999 #cc99ff*/
+
+/*#myCanvas {padding-left:0;padding-right:0;margin-left:auto;margin-right:auto;display:block;padding-top:0;margin-top:0;}*/
+#myCanvas {margin-left:300;float:left;}
+div.listCategories {margin-top:20pt;;float:left;}

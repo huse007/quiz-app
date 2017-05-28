@@ -1,0 +1,56 @@
+#activate virtualenv
+source ~/.virtualenv/django1.11/.../activate
+
+#inside working directory:
+django-admin startproject mysite .
+
+#mysite/settings.py
+TIME_ZONE = 'Europe/Berlin'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
+
+#create a database:
+python3 manage.py migrate
+
+#start server:
+python manage.py runserver
+
+#start app:
+python3 manage.py startapp quiz
+
+#mysite/settings.py
+INSTALLED_APPS = [...,'quiz',]
+
+#make a model:
+class Question(models.Model):
+      quest = models.CharField(max_length=200)
+      def __str__(self):
+      	  return self.quest
+
+#tell django about new model:
+python manage.py makemigrations quiz
+
+#add model to database:
+python manage.py migrate quiz
+
+#make admin ../admin.py
+from .models import Question
+admin.site.register(Question)
+
+#create superuser
+python manage.py createsuperuser
+
+#mysite/urls.py
+from django.conf.urls import include,url
+..
+urlpatterns = [...,url(r'', include('quiz.urls')),]
+
+#quiz/urls.py
+from django.conf.urls import url
+from . import views
+urlpatterns = [...,url(r'^$', views.question, name='question'),]
+
+#create views quiz/views.py
+def question(request):
+    return render(request, 'question/post_list.html', {})
+

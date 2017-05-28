@@ -1,0 +1,42 @@
+{% extends 'quiz/main.html' %}
+{% load static %}
+<!-- lag siden slik AT BLOCK FADER INN. NÅR man svarer forsvinner blocken og 
+     correct eller wrong block vises. Når man trykker på den fader ny block 
+     med spørsmål inn -->
+{% block contentright %}
+
+<div class="quizframe">
+  <button onclick=start() id="start_button" class="buttonclass">START QUIZ</button>
+  <h2 id="question_start" ></h2><br>
+  <button id="0" onclick="check(id)" class="buttonclass"></button>
+  <button id="1" onclick="check(id)" class="buttonclass"></button>
+  <button id="2" onclick="check(id)" class="buttonclass"></button>
+  <h2 id="test"></h2>
+  <h2 id="correct"></h2>
+  <h2 id="points"></h2>
+<div id="progressBar">
+  <div id="bar">0%</div>
+</div>
+<div id="scoreBar">
+  <div id="sbar">0</div>
+</div>
+</div>
+<script><!--type="text/javascript" src="{% static "quiz/startquiz.js" %}">-->
+  function start() {
+  document.getElementById("start_button").style.display = "none";
+  var myq = [];
+  myq = JSON.parse('{{ qlist|escapejs }}');
+  var myc = [];
+  var count = 0;
+  {% for i in clist %}		  
+  var tmp = JSON.parse('{{ i|escapejs }}');
+  myc[count++] = tmp;
+  {% endfor %}  
+  init(myq,myc);
+  loop(0);
+  }	  
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style.css' %}">
+  </head>
+  <body>
+  <form>
+  <div class="page-header">
+    <h1><a href="/">Anders' Quiz App</a></h1>
+    </div>
+  <div class="choices">
+    {% for question in questions %}
+    <div>
+      <h1>{{question}}</h1>
+    </div>
+    <ul>
+      {% for choice in question.choice_set.all %}
+      
+      <ul>
+	<p>
+	<input type="checkbox" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+	{{ choice.choice_name }}
+      </p>
+      </ul>
+    {% endfor %}
+  </ul>
+    {% endfor %}
+    <br>
+    <button type="button" class="btn btn-info btn-lg">Submit Answers</button>
+  </div>
+  </form>
+  </body>
+</html>

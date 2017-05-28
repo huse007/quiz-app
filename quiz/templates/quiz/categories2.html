@@ -1,0 +1,206 @@
+{% extends 'quiz/main.html' %} {% load static %}
+{% block contentleft %}
+<div class="listCategories">
+  {% for category in categories %}
+  <a href="/{{category}}" class="categories">{{category}}</a><br> {% endfor %}
+</div>
+{% endblock contentleft %}
+{% block contentright %}
+<canvas id="myCanvas"><!--style="border:1px solid #d3d3d3;">-->
+  Your browser does not support html5 canvas tag.
+</canvas>
+<p id="cons"></p>
+{% endblock contentright %}
+<style>
+  .listCategories {
+  background-color:#ff43Bc;
+  }
+</style>
+<script>
+    var c = document.getElementById("myCanvas");
+    c.width = 500;
+    c.height = 500;
+    var radius = c.width / 2;
+    var ctx = c.getContext("2d");
+    var col = ['#e699ff', '#ffe066', '#ffff99', 'lightblue', 'lightgreen', 'pink'];
+    var cate = ['Music', 'Geography', 'History', 'Sport', 'Science', 'TV'];
+    var slices = cate.length;
+    drawPie(cate);
+
+    function drawPie(category) {
+        <!--var slices = category.length;-->
+        for (var i = 0; i < slices; i++) {
+            var startAngle = 0.0;
+            startAngle = i * (2 * Math.PI) / slices;
+            var endAngle = startAngle + (2 * Math.PI) / slices;
+            drawPieSlice(ctx, c.width / 2, c.height / 2, radius, startAngle, endAngle, col[i]);
+            settext(ctx, radius, startAngle, endAngle, category[i], 20);
+        }
+    }
+
+    function drawPieSlice(ctx, centerX, centerY, radius, startAngle, endAngle, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+			    ctx.closePath();
+        ctx.fill();
+    }
+
+    function settext(ctx, radius, startAngle, endAngle, text, u) {
+        ctx.fillStyle = "black";
+        var fontstring = u.toString();
+        ctx.font = "bold " + u.toString() + "px Arial";
+        var lx = c.width / 2 + radius / 1.5 * Math.cos(startAngle + (2 * Math.PI / 6) / 2);
+        var ly = c.height / 2 + radius / 1.5 * Math.sin(startAngle + (2 * Math.PI / 6) / 2);
+        var metrics = ctx.measureText(text);
+        var w = metrics.width / 2;
+        var h = ctx.measureText('M').width / 4;
+        ctx.fillText(text, lx - w, ly + h);
+
+    }
+    ptag = document.getElementById("cons");
+
+    function writeMessage(ptag, message) {
+        ptag.innerHTML = message;
+    }
+
+    function getMousePos(c, evt) {
+        var rect = c.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+    c.addEventListener('click', function(evt) {
+        var mousePos = getMousePos(c, evt);
+        var x = mousePos.x;
+        var y = mousePos.y;
+        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y + ' ';
+        <!--writeMessage(ptag, message);-->
+        section(mousePos.x, mousePos.y);
+    }, false);
+
+    function section(a, b) {
+        var x = a - radius;
+        var y = b - radius;
+        console.log("x: " + x);
+        console.log("y: " + y);
+        theta = Math.atan2(y, x);
+        console.log("vinkel " + theta);
+        for (var i = 0; i < slices; i++) {
+            var startAngle = 0.0;
+            startAngle = i * (2 * Math.PI) / slices;
+            var endAngle = startAngle + (2 * Math.PI) / slices;
+            if (theta < 0.0) {
+                theta += 2 * Math.PI;
+            }
+            if ((theta > startAngle && theta < endAngle) && Math.sqrt(x * x + y * y) < radius) {
+                <!--                console.log(Math.sqrt(x * x + y * y));-->
+                <!--                ptag.innerHTML = cate[i];-->
+                myMove(startAngle, endAngle, i);
+                setTimeout(redirect.bind(null,cate[i]), 1000);
+                <!--                window.location.href = "/" + cate[i];-->
+                <!--myMove();-->
+
+            }
+
+
+        }
+    }
+
+    function redirect(new_url) {
+        window.location.href = "/" + new_url;
+    }
+
+    function myMove(startAngle, endAngle, i) {
+        var id = setInterval(frame, 50);
+        minislice = 0;
+        finalAngle = startAngle;
+        moveRadius = radius / 12;
+        var fontsize = 20;
+
+        function frame() {
+            if (minislice > 12) {
+                clearInterval(id);
+            } else {
+                console.log(minislice);
+                endAngle += (minislice) / (2 * Math.PI);
+                drawPieSlice(ctx, c.width / 2, c.height / 2, radius, startAngle, endAngle, col[i]);
+                fontsize += 5;
+                settext(ctx, radius - minislice * moveRadius, startAngle, endAngle, cate[i], fontsize);
+                minislice++;
+            }
+        }
+
+    }
+
+    function sleep(time) {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+</script>
+<!--<script><!-- type="text/javascript">
+        var lx = c.width / 2 + radius / 1.5 * Math.cos(startAngle + (2 * Math.PI / 6) / 2);
+        var ly = c.height / 2 + radius / 1.5 * Math.sin(startAngle + (2 * Math.PI / 6) / 2);
+        ctx.fillText(text, lx - (text.length * 3.2), ly - (text.length / 2));
+
+
+
+        function frame() {
+            if (minislice > 12) {
+                clearInterval(id);
+            } else {
+                console.log(minislice);
+                drawPieSlice(ctx, c.width / 2, c.height / 2, radius, startAngle, endAngle + (minislice / 2 * Math.PI), col[i]);
+                settext(ctx, radius - minislice * moveRadius, startAngle, endAngle, cate[i], fontsize++);
+                minislice++;
+            }
+        }
+
+var ctx = c.getContext("2d");
+  ctx.beginPath();
+  ctx.arc(95,50,40,0,2*Math.PI);
+  ctx.stroke();
+
+
+  window.onload = function () {
+  console.log("PIE");
+  var chart = new CanvasJS.Chart("chartContainer",
+  {
+  title:{
+  text: "Category",
+  fontFamily: "arial black"
+  },
+  animationEnabled: true,
+  legend: {
+  verticalAlign: "bottom",
+  horizontalAlign: "center"
+  },
+  theme: "theme1",
+  data: [
+  {
+  type: "pie",
+  indexLabelFontFamily: "Garamond",
+  indexLabelFontSize: 20,
+  indexLabelFontWeight: "bold",
+  startAngle:0,
+  indexLabelFontColor: "MistyRose",
+  indexLabelLineColor: "darkgrey",
+  indexLabelPlacement: "inside",
+  toolTipContent: "{name}: {y}hrs",
+  showInLegend: true,
+  indexLabel: "#percent%",
+  dataPoints: [
+  {  y: 33, name: "Music", legendMarkerType: "triangle"},
+  {  y: 33, name: "History", legendMarkerType: "square"},
+  {  y: 33, name: "Geography", legendMarkerType: "circle"}
+  ]
+  }
+  ]
+  });
+  chart.render();
+  }
+</script>
+<!--<script type="text/javascript" src="/quiz/canvasjs.min.js"></script>-->
+

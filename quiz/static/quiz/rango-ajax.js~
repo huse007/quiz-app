@@ -1,0 +1,6 @@
+  $('#about-btn').click(function() {
+      $.get("/quiz/mainquiz.html",function(data,status) {
+	  alert("Data: "+data+"\nStatus: "+status);
+      });
+  }); 
+    
