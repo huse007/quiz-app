@@ -1,0 +1,8 @@
+{
+    "employees":[
+    {"firstName":"John", "lastName":"Doe"},
+    {"firstName":"Anna", "lastName":"Smith"},
+    {"firstName":"Peter", "lastName":"Jones"}
+]
+}
+	<button onclick="displayDate()">The time is?</button>

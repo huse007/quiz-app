@@ -43,10 +43,10 @@ def signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
+            raw_password = form.cleaned_data.get('password')
             user = authenticate(username = username,password = raw_password)
             login(request,user)
-            return redirect('home')
+            return redirect('/main')
     else:
         print("signup() else")
         form = UserCreationForm()
@@ -212,7 +212,9 @@ def main(request):
     if request.method == 'GET':
         print("main() GET")
         print("svarer på get med status: ",request)
-        return render(request, 'quiz/main.html',{"status":status,'cnumber':stats['cnumber'],'qnumber':stats['qnumber']})
+        context={"status":status,"cnumber":stats["cnumber"],"qnumber":stats["qnumber"]}
+        print("context: ",context)
+        return render(request, "quiz/main.html",context)
     print(stats['qnumber'])
     return render(request, 'quiz/main.html',{"categories":categories,"status":status,'cnumber':stats['cnumber'],'qnumber':stats['qnumber']})
 
@@ -225,10 +227,14 @@ def getmsg(request):
     data2={"msg":msg}
     return HttpResponse('Hello World')
 def getdata(request):
-    msg=request.GET.get('msg',None)
-    categories_json = serialize('json',Category.objects.all()) 
-    return JsonResponse(categories_json,safe=False);
-
+    print("getdata()")
+    if request.method=='GET':
+        print("get request")
+        categories_json = serialize('json',Category.objects.all()) 
+        print(">>>>>",categories_json)
+        return JsonResponse(categories_json,safe=False)
+    print("something went wrong")
+    return render(request,'quiz/main.html',{})
 def savestatistics(request):
     if request.method =='POST':
         uname = "guest"

@@ -4,6 +4,8 @@ from quiz.views import QuestionView
 urlpatterns = [
 
     #url(r'^main/$',views.startpage),
+    url(r'^getdata/$',views.getdata),
+    url(r'^$',views.main),
     url(r'^home/$',views.home),
     url(r'^main/quiz/$', views.question_list, name='question_list'),
     url(r'^login/$',views.login),
@@ -47,7 +49,7 @@ urlpatterns = [
     url(r'^Programming/$',views.mainquiz),
     url(r'^main/$',views.main),
     url(r'^getmsg/$',views.getmsg),
-    url(r'^getdata/$',views.getdata),
+
     url(r'^getstatistics/$',views.getstatistics),
     url(r'^savestatistics/$',views.savestatistics),
     url(r'^gethiscore/$',views.gethiscore),

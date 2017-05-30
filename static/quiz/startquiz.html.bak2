@@ -1,0 +1,19 @@
+{% extends 'quiz/info.html' %}
+{% block content %}
+<div class="infotext">
+{% for question in qlist %}
+<h1>{{ question }}</h1>
+{% for choice in clist %}
+<input type="checkbox">{{choice}}</input><br>
+{% endfor %}
+{% endfor %}
+
+
+<p id="q">{{qlist.pop2}}</p>	     
+<p id="a">{{clist.pop}}</p>
+<p id="a">{{clist.pop}}</p>
+<p id="a">{{clist.pop}}</p>
+<input type="button" onclick='document.getElementById("q").innerHTML ="{{qlist.pop}}"' value="Confirm"> 
+</div>
+
+{% endblock content %}

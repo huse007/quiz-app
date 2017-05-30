@@ -12,7 +12,9 @@ function initialize() {
     console.log("init()");
     get_categories();
     $.get("/getstatistics",{},function(receiveddata) {
+	console.log("getstatistics get metode");
 	num_questions = receiveddata["qnumber"];
+	console.log(num_questions);
 	num_categories = receiveddata["cnumber"];
 	numqincat = receiveddata["numqincat"];
 	status = receiveddata["status"];
@@ -38,12 +40,11 @@ function clean_screen() {
 	leavecategory();
 }
 function get_categories() {
-    send_msg="test";
-    $.get("/getdata",{"msg":send_msg},function(receiveddata) {                                                                                                
+    $.get("quiz/getdata",function(receiveddata) {
+        console.log("will execute this line");
 	categories = JSON.parse(receiveddata);
-	printing();
-    });
-        
+	console.log("will not execute this line");
+    });        
 }
 function printing() {
     console.log(categories[0].fields["category_name"]);
