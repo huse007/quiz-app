@@ -3,22 +3,24 @@ from . import views
 from quiz.views import QuestionView
 urlpatterns = [
 
-    #url(r'^main/$',views.startpage),
-    url(r'^getdata/$',views.getdata),
     url(r'^$',views.main),
-    url(r'^home/$',views.home),
-    url(r'^main/quiz/$', views.question_list, name='question_list'),
-    url(r'^login/$',views.login),
+    url(r'^getdata/$',views.getdata),
+    ##url(r'^main/$',views.main), #1
+
+    ##url(r'^home/$',views.home),
+    ##url(r'^main/quiz/$', views.question_list, name='question_list'),
+    url(r'^login/$',views.ulogin),
+
     #url(r'^loginuser/$',views.login),
-    url(r'^register/$',views.register),
+    ##url(r'^register/$',views.register),
     #url(r'^user/$',views.user),
-    url(r'^base/$',views.base),
-    url(r'^info/$',views.info),
-    url(r'^quiz/home',views.home),
+    ##url(r'^base/$',views.base),
+    ##url(r'^info/$',views.info),
+    ##url(r'^quiz/home',views.home),
     url(r'^signup/$',views.signup, name='signup'),
-    url(r'^categories/$',views.categories),
-    url(r'^categories2/$',views.categories2),
-    url(r'^startquiz/$',views.startquiz),
+    ##url(r'^categories/$',views.categories),
+    ##url(r'^categories2/$',views.categories2),
+    ##url(r'^startquiz/$',views.startquiz),
     url(r'^mainquiz/$',views.mainquiz),
     #url(r'^Logout/$',views.Logout),
     url(r'^News/$',views.mainquiz),
@@ -47,7 +49,7 @@ urlpatterns = [
     url(r'^Economy/$',views.mainquiz),
     url(r'^Statistics/$',views.mainquiz),
     url(r'^Programming/$',views.mainquiz),
-    url(r'^main/$',views.main),
+    ##url(r'^main/$',views.main),
     url(r'^getmsg/$',views.getmsg),
 
     url(r'^getstatistics/$',views.getstatistics),

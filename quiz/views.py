@@ -21,9 +21,10 @@ from django.core.serializers import serialize
 from django.core import serializers
 
 # Create your views here.
-status = "login"
+#status = "login"
 number = 0
 number_of_questions = 5
+counter = 0 
 class QuestionView(DetailView):
     model = Question
     def get_context_data(self,**kwargs):
@@ -41,35 +42,19 @@ def signup(request):
         print("signup()")
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            print("views.py::signup()::formvalidation")
             form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password')
+            raw_password = form.cleaned_data.get('password1')
             user = authenticate(username = username,password = raw_password)
             login(request,user)
-            return redirect('/main')
+            return redirect('/')
     else:
         print("signup() else")
         form = UserCreationForm()
     print("signup() utenfor")
     return render(request, 'quiz/signup.html',{'form':form})
 
-    
-
-"""
-def loginuser(request):
-    if request.method=='POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleanded_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username = username,password = raw_password)
-            login(request,user)
-            return redirect('home')
-    else:
-        form = UserCreationForm()
-    return render(request, 'loginuser.html',{'form':form})
-"""            
 def question_list(request):
     questions = Question.objects.all()
     return render(request, 'quiz/question_list.html',{'questions':questions})
@@ -79,7 +64,10 @@ def startpage(user):
 
 @login_required
 def home(request):
+    status = request.session["status"]
+    print("home() status: ",status)
     if request.method == 'POST': #Når den har fått input havner den her
+        print("home() POST status: ",status)
         form = MyForm(request.POST)
         print("NNNNN",form.field)
         if form.is_valid():
@@ -91,24 +79,12 @@ def home(request):
         form = MyForm()
     return render(request,'quiz/home.html',{'status':status,'form':form})
 
-"""
-@login_required
-def home(request):
-    if request.method =='POST':
-        data = {'navn':'anders'}
-        f = TestForm(data)
-"""
 def categories(request):
     categories = Category.objects.all()
     return render(request, 'quiz/categories.html',{'categories':categories,'status':status})
 def categories2(request):
     categories = Category.objects.all()
     return render(request, 'quiz/categories2.html',{'categories':categories,'status':status})
-#class LazyEncoder(DjangoJSONEncoder):
-#    def default(self,obj):
-#        if isinstance(obj, YourCustomType):
-#            return force_text(obj)
-#        return super(LazyEncoder, self).default(obj)
 
 def startquiz(request):
     number_of_questions = 5
@@ -132,7 +108,7 @@ def startquiz(request):
     return render(request, 'quiz/startquiz.html',{'status':status,'qlist':qlist,'clist':clist})
 
 def statistics():
-    print("statistics()")
+    print("views.py::statistics()")
     cnumber = Category.objects.all().count()
     qnumber = Question.objects.all().count()
 
@@ -140,8 +116,10 @@ def statistics():
     print("qnumber: ",qnumber)
     return {"cnumber":cnumber,"qnumber":qnumber}
 
-@login_required(login_url='/main')        
+@login_required(login_url='/login')        
 def mainquiz(request):
+    status = request.session.get("status",None)
+
     print("mainquiz() status",status)
     number_of_questions = 10
     cat = request.path.strip('/')
@@ -149,7 +127,6 @@ def mainquiz(request):
     q = c.question_set.all().order_by('?')[:number_of_questions]
     #c = choice_set.all()
     clist = []
-    print(q)
     for item in q:
         c = item.choice_set.all()# order_by('question')
         #for i in c:
@@ -159,67 +136,33 @@ def mainquiz(request):
 
     #clist = serialize('json',clist)
     #clist = serialize('json',c,fields=('choice_name'))
-    print("Alle: ",clist)
-    print("ferdig")
     return render(request, 'quiz/mainquiz.html',{'status':status,'qlist':qlist,'clist':clist,'cat':cat})
 
-    
-
-"""
-@login_required
-def startquiz(request):
-    print("Starter quizen!")
-    c = Category.objects.filter(category_name='News')
-    i = c.first()
-    print(i)
-    print(i.pk)
-    
-    question_list = Question.objects.filter(category=i.pk)
-    print(question_list)
-    choice_list = Choice.objects.all()
-
-    form = QuestionForm(request.POST)
-    print("*************")
-    print(form)
-    if form.is_valid():
-            return render(request, 'quiz/tartquiz.html',{'status':status,'question_list':question_list, 'choice_list':choice_list,'form':form})
-    return render(request, 'quiz/startquiz.html',{'status':status,'question_list':question_list, 'choice_list':choice_list,'form':form})
-"""    
 def base(request):
     return render(request, 'quiz/base.html',{})
 def info(request):
     return render(request, 'quiz/info.html',{"status":status})
 
+@login_required(login_url='/login')        
 def main(request):
-    print("main()")
-    global status
+    status = request.session.get("status",None)
+    print("views.py::main() status: ",status)
+    
     categories = Category.objects.all()
     stats =statistics();
-    print("main() -> status: ",status)
-    """    form = UserForm(request.POST or None)  
-    if request.method == 'POST':
-    print("main() POST")
-    if form.is_valid():
-    form.save()
-    username = form.cleaned_data.get('user_name')
-    raw_password = form.cleaned_data.get('password')
-    user = authenticate(username = username,password = raw_password)
-    login(request,user)
-    return render(request, 'quiz/main.html',{"categories":categories,"status":status,'cnumber':stats['cnumber'],'qnumber':stats['qnumber'],'form':form})
-    else:
-    return redirect('register')
-    """
     if request.method == 'GET':
-        print("main() GET")
-        print("svarer på get med status: ",request)
+        print("views.py::main() GET status: ",status)
         context={"status":status,"cnumber":stats["cnumber"],"qnumber":stats["qnumber"]}
-        print("context: ",context)
         return render(request, "quiz/main.html",context)
-    print(stats['qnumber'])
+    if reguest.method == 'POST':
+        print("views.py::main POST status: ",status)
     return render(request, 'quiz/main.html',{"categories":categories,"status":status,'cnumber':stats['cnumber'],'qnumber':stats['qnumber']})
 
-#def user(request):
-#    return render(request, 'quiz/user.html',{})
+def ulogin(request):
+    status = request.session.get("status",None)
+    print("views.py::login() status: ",status)
+    return render(request,'quiz/login.html',{})
+
 def getmsg(request):
     msg=request.GET.get('msg',None)
     print("message",msg)
@@ -253,6 +196,7 @@ def savestatistics(request):
     print("NEI")
     return HttpResponse('/quiz/main.html')
 def gethiscore(request):
+    status = request.session.get("status",None)
     #format: hi_list = {"Music":category_table,"History":category_table,...}
     hiscore_map = {}
     if request.method =='GET':
@@ -278,20 +222,22 @@ def gethiscore(request):
         return JsonResponse(hiscore_map,safe=False)
     return render(request,'quiz/main.html')
 
-def getstatistics(request):    
+def getstatistics(request):
+    status = "ERROR"
+    if "status" in request.session:
+        status = request.session["status"]
+    else:
+        status = "login"
+    print("views.py::getstatistics() status: ",status)
     cnumber = Category.objects.all().count()
     qnumber = Question.objects.all().count()
     c = Category.objects.all()
     cs = Categoryscore.objects.all().count()
-    print("Categoryscore: ",cs)
     num_qincat = {}
     for i in c:
         num_qincat[str(i)]=Question.objects.filter(category=i).count()
- #   qtest = Question.objects.filter(category="1").count()
-  #  print("qtest: ",qtest)
     stats = {"qnumber":qnumber,"cnumber":cnumber,"numqincat":num_qincat,"status":status}
     #json_stats = serialize('json',Question.objects.all().count())-->
-    print(stats)
     return JsonResponse(stats,safe=False)
 def register(request):
     title='Welcome'
@@ -308,12 +254,14 @@ def register(request):
 
 @receiver(user_logged_in)
 def logged_in(request,**kwargs):
-    global status
-    status="logout"
-    print("You logged in. Fixing status to: ",status)
+    #    global status
+    #status="logout"
+    request.session["status"] = request.user.username
+    print("You logged in. Fixing status to: ",request.session["status"])
 @receiver(user_logged_out)
 def logged_out(request,**kwargs):
-    global status
-    status = "login"
-    print("You logged out. Fixing status to: ",status)
+    #global status
+    #status = "login"
+    request.session["status"] = "login";
+    print("You logged out. Fixing status to: ",request.session["status"])
 

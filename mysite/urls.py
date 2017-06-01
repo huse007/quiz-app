@@ -21,9 +21,10 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 #    url(r'^login/$',auth_views.login,{'template_name':'quiz/main.html'}, name='login'),
-    url(r'^main/$',auth_views.login,{'template_name':'quiz/login.html'}, name='login'),
+    url(r'^login/$',auth_views.login,{'template_name':'quiz/login.html'}, name='login'),    #Det stod main foran $ tidligere
+
 #    url(r'^loginuser/$',auth_views.login,{'template_name':'loginuser.html'}, name='loginuser'),
-    url(r'^logout/$',auth_views.logout,{'next_page':'/main/'}, name='logout'),
+    url(r'^logout/$',auth_views.logout,{'next_page':'/'}, name='logout'),
     url(r'',include('quiz.urls')),
     
     #url(r'^logout/$',auth_views.logout, name='logout'),

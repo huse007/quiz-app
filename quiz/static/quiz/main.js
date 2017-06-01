@@ -9,17 +9,15 @@ var cattable ="";
 var status;
 function initialize() {    
     //Get categories
-    console.log("init()");
-    get_categories();
+    console.log("main.js::init()   ");
+    //get_categories();
     $.get("/getstatistics",{},function(receiveddata) {
-	console.log("getstatistics get metode");
 	num_questions = receiveddata["qnumber"];
-	console.log(num_questions);
 	num_categories = receiveddata["cnumber"];
 	numqincat = receiveddata["numqincat"];
 	status = receiveddata["status"];
+	console.log("STATUS: "+status);
 	document.getElementById("login").innerHTML =status;
-	console.log("status",status);
 	if(status =="login")
 	    login();
 	for(var key in numqincat){
@@ -33,13 +31,17 @@ function initialize() {
 
 }
 function clean_screen() {
-    console.log("clean_screen()");
+    console.log("main.js::clean_screen()");
     if(document.getElementById("hcontainer").style.display=="block")
 	document.getElementById("hcontainer").style.display="none";
     else if(document.getElementById("ccontainer").style.display=="block")
 	leavecategory();
+    else if(document.getElementById("lcontainer").style.display=="block")
+	leavelogin();
+    
 }
 function get_categories() {
+    console.log("main.js::get_categories()");
     $.get("quiz/getdata",function(receiveddata) {
         console.log("will execute this line");
 	categories = JSON.parse(receiveddata);
@@ -47,17 +49,18 @@ function get_categories() {
     });        
 }
 function printing() {
+    console.log("main.js::printing()");
     console.log(categories[0].fields["category_name"]);
 }
 function home() {
-    console.log("home()");
-    window.location.href="/main";
+    console.log("main.js::home()");
+    window.location.href="/";
 }
 function main() {
-    console.log("main()");
+    console.log("main.js::main()");
 }
 function news() {
-    console.log("news()");
+    console.log("main.js::news()");
     clean_screen();
     //Since login block is used initialy, we don't want the
     //other menus to pop up behind when mouse is moving from
@@ -80,7 +83,7 @@ function news() {
     }
 }
 function contact() {
-    console.log("contact()");
+    console.log("main.js::contact()");
     clean_screen();
     //Since login block is used initialy, we don't want the
     //other menus to pop up behind when mouse is moving from
@@ -103,7 +106,7 @@ function contact() {
     
 }
 function about() {
-    console.log("about()");
+    console.log("main.js::about()");
     clean_screen();
     //Since login block is used initialy, we don't want the
     //other menus to pop up behind when mouse is moving from
@@ -125,7 +128,7 @@ function about() {
     }
 }
 function statistics() {
-    console.log("statistics()");
+    console.log("main.js::statistics()");
     //Since login block is used initialy, we don't want the
     //other menus to pop up behind when mouse is moving from
     //url to lcontainer
@@ -150,14 +153,16 @@ function statistics() {
     }	    
 }
 function category() {
-    console.log("category()");
+    console.log("main.js::category()");
     clean_screen();
     //Since login block is used initialy, we don't want the
     //other menus to pop up behind when mouse is moving from
     //url to lcontainer
     var l = document.getElementById("lcontainer");
-    if(l.style.display=="block")
+    if(l.style.display=="block"){
+	console.log("login vises");
 	return;
+}
     var element = document.getElementById("ccontainer");
     if(element.style.display=="block"){
 	var x = event.clientX;
@@ -177,26 +182,33 @@ function category() {
     }
 }
 function leavecategory() {
-    console.log("leavecategory()");
+    console.log("main.js::leavecategory()");
     var element = document.getElementById("ccontainer");
     if(element.style.display=="block"){
 	element.style.display="none";
     }
 
 }
-/*function loginuser() {
-    print("login()")
-    window.location.href="/login";
-}*/
+
 function login() {
-    console.log("login()");
-<!--    window.location.href="/login";-->
-	if(document.getElementById("login").innerHTML=="logout") {
-	    window.location.href="/logout";
-	    return;
-	}
+    console.log("main.js::login() status: "+status);
+/*    if(document.getElementById("login").innerHTML=="logout") {
+	window.location.href="/logout";
+	return;
+    }*/
+
+    if(status !="login") {
+	clean_screen();
+	window.location.href="/logout"
+	return;
+    }
     var element = document.getElementById("lcontainer");
     if(element.style.display=="block") {
+    clean_screen();
+	//	leavelogin();
+    }
+
+/*    if(element.style.display=="block") {
 	var x = event.clientX;
 	var y = event.clientY;
 	var elementMouseIsOver = document.elementFromPoint(x, y);
@@ -205,8 +217,9 @@ function login() {
 	else{
 	    element.style.display="none";
 	}
-    }
+    }*/
     else{
+	clean_screen();
 	element.style.display="block";
 	var header = document.getElementById("lh2");
 	header.innerHTML = "Login";
@@ -216,13 +229,14 @@ function login() {
 }
 
 function leavelogin() {
-    console.log("leavelogin()");
+    console.log("main.js::leavelogin()");
     var element = document.getElementById("lcontainer");
     if(element.style.display=="block"){
 	element.style.display="none";
     }
 }
 function gone_off_screen() {
+    console.log("main.js::gone_off_screen()");
     var element1 = document.getElementById("msg");
     var element2 = document.getElementById("ccontainer");
     var x = event.clientX;
@@ -232,22 +246,24 @@ function gone_off_screen() {
     element2.style.display="none";
 }
 function hiscore() {
-    console.log("main.js -> hiscore()");
-    
+    console.log("main.js::hiscore()");
+
+
     var tmp = document.getElementById("hc");
     while(tmp.firstChild){
 	tmp.removeChild(tmp.firstChild);
     }
-    var l = document.getElementById("lcontainer");
+/*    var l = document.getElementById("lcontainer");
     if(l.style.display=="block")
-	return;
+	return;*/
+    var is_active = false;
     var element = document.getElementById("hcontainer");
     if(element.style.display=="block"){
 	//element.style.display="none";
-	clean_screen();
-
+	is_active = true;
     }
-    else{
+    clean_screen();
+    if(!is_active){
 	console.log("popping up hiscore() når ikke det er noen oppe fra før");
 	element.style.display="block";
 	var header = document.getElementById("hh2");
@@ -319,7 +335,7 @@ function hiscore() {
 }
 
 function scrollup() {
-    console.log("up");
+    console.log("main.js::scrollup()");
     var bg = document.getElementById("hc");
     document.getElementById("scrolliconcontainerdown").style.visibility="visible";
     if(bg.scrollTop < bg.scrollHeight-bg.offsetHeight) {
@@ -331,7 +347,7 @@ function scrollup() {
     }
 }
 function scrolldown() {
-    console.log("down");
+    console.log("main.js::down()");
     var bg = document.getElementById("hc");
     document.getElementById("scrolliconcontainerup").style.visibility="visible";
     if(bg.scrollTop >= 1){

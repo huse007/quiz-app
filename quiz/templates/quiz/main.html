@@ -234,7 +234,7 @@
   left:10%;
   top:20%;
   width:60%;
-  height:40%;
+  height:50%;
   background-color:#333;
   color:#ddd;
   font-size:15px;
@@ -366,7 +366,7 @@ height:60%;
 	<li class="norm" id="mysite-btn"><p id="mysite">My Site</p></li>
 	<li class="norm" id="highscore-btn"><p id="highscore">Highscore</p></li>
 	<li class="norm" id="statistics-btn"><p id="statistics">Statistics</p></li>
-	<li style="float:right"><p id="login">{{ status }}</p></li>
+	<li style="float:right"><p id="login"></p></li>
       </ul>
     </div>
     <!--screen-->
@@ -512,86 +512,28 @@ height:60%;
 
 window.onload = initialize();
 
-    document.getElementById("home").addEventListener("click",home,false);
-    document.getElementById("about").addEventListener("mouseover",about,false);
-    document.getElementById("about").addEventListener("mouseleave",about,false);
-    document.getElementById("contact").addEventListener("mouseover",contact,false);
-    document.getElementById("contact").addEventListener("mouseleave",contact,false);
-    document.getElementById("news").addEventListener("mouseover",news,false);
-    document.getElementById("news").addEventListener("mouseleave",news,false);
-    document.getElementById("category").addEventListener("mouseover",category,false);
+document.getElementById("home").addEventListener("click",home,false);
+document.getElementById("about").addEventListener("mouseover",about,false);
+document.getElementById("about").addEventListener("mouseleave",about,false);
+document.getElementById("contact").addEventListener("mouseover",contact,false);
+document.getElementById("contact").addEventListener("mouseleave",contact,false);
+document.getElementById("news").addEventListener("mouseover",news,false);
+document.getElementById("news").addEventListener("mouseleave",news,false);
+document.getElementById("category").addEventListener("mouseover",category,false);
 document.getElementById("category").addEventListener("mouseleave",category,false);
-/*    document.getElementById("category").addEventListener("click",leavecategory,false);*/
 document.getElementById("ccontainer").addEventListener("mouseleave",leavecategory,false);
 document.getElementById("login").addEventListener("click",login,false);
-/*document.getElementById("login").addEventListener("mouseleave",login,false);*/
-document.getElementById("lcontainer").addEventListener("mouseleave",leavelogin,false);
-    document.getElementById("screen").addEventListener("mouseleave",gone_off_screen,false);
-    document.getElementById("statistics").addEventListener("mouseover",statistics,false);
-    document.getElementById("statistics").addEventListener("mouseleave",statistics,false);
+document.getElementById("screen").addEventListener("mouseleave",gone_off_screen,false);
+document.getElementById("statistics").addEventListener("mouseover",statistics,false);
+document.getElementById("statistics").addEventListener("mouseleave",statistics,false);
 document.getElementById("highscore").addEventListener("click",hiscore,false);
 
 
 document.getElementById("scrolliconcontainerup").addEventListener("click",scrollup,false);
 document.getElementById("scrolliconcontainerdown").addEventListener("click",scrolldown,false);
-    /*  function drop() {
-  var msg ="hei";
-  console.log("drop()");
-  $.get("/getmsg",{"msg":msg},function(data2) {
-  console.log(data2);
-  $('#msg').html(data2);
-  });}
-  
-  function getdata() {
-  var element = document.getElementById("msg");
-  if(element.style.display==='none') {
-  element.style.display ='block';
-  }
-  else {
-  element.style.display='none';
-  }
-  console.log("getdata()");
-  var send_msg = "sending";
-  $.get("/getdata",{"msg":send_msg},function(receiveddata) {
-  var categories = JSON.parse(receiveddata);
-  for(i=0;i<categories.length;i++){
-	     var para = document.createElement("a");
-	     para.links=("/Physics");
-	     var brake = document.createElement("br");
-	     var node = document.createTextNode(categories[i].fields["category_name"]);
-	     para.appendChild(node);
-	     para.appendChild(brake);
-
-	     element.appendChild(para);
-	     element.style.visibility="visible";
-	     }});}
-				 
-				  <!--  var categories = JSON.parse('{{ receiveddata|escapejs }}'); -->
-  
-  
-  */
   </script>
 
 </body>
 
 </html>
 
-<!--
-<body>
-  <div class="page-header">
-    <h1>The Worlds Biggest Quiz Database</h1>
-  </div>
-  <div class="mainwindow">
-    
-    {% block menu %}
-    {% endblock menu %}
-    
-    <div class="rightwindow">
-      {% block content %}
-      {% endblock content %}
-    </div>
-  </div>
-  <script src="{% static "quiz/startquiz.js" %}"></script>
-</body>
-
--->
