@@ -1,9 +1,13 @@
 # quiz-app (Django Backend)
 Repository for quiz-app
 ## Installing (using pip)
-Create a virtual environment:
+Installing virtual env:
 ```
 pip install virtualenv
+```
+Creating a virtual environment:
+```
+virtualenv ENV
 ```
 
 Install django using pip:
