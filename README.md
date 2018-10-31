@@ -24,10 +24,12 @@ pip install django
 ## Usage
 
 ```
-$ django-admin <command> [options]
+$ django-admin <command> [options] (help --commands)
 $ manage.py <command> [options]
 $ python -m django <command> [options]
 ```
+
+More details will come...
 
 ## Author
 **Anders Huse Pedersen** - *initial work*
