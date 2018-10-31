@@ -2,9 +2,15 @@
 Repository for quiz-app. 
 
 The app is made using Python/Django backend with SQLite3 database.
+
 Admin users are allowed to:
  - Add/remove/edit questions, answers and categories.
  - Add/remove user accounts
+
+Users are allowed:
+ - Play quiz
+ - Create new password
+ - Delete account
 
 ## Installing (using pip)
 Installing virtual env:
@@ -30,6 +36,10 @@ $ python -m django <command> [options]
 ```
 
 More details will come...
+
+## Comments
+The backend works well, but the frontend lacks design. 
+Will be replaced by a new React frontend soon... 
 
 ## Author
 **Anders Huse Pedersen** - *initial work*
