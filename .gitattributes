@@ -1,2 +1,2 @@
-*.rb linguist-language=Python
 static/* linguist-vendored
+*.rb linguist-language=Java
