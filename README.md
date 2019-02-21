@@ -1,5 +1,6 @@
 # quiz-app (Django Backend)
 Repository for quiz-app. 
+![alt text](https://raw.githubusercontent.com/huse007/quiz-app/quizapp.png)
 
 The app is made using Python/Django backend with SQLite3 database.
 
