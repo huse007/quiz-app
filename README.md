@@ -16,18 +16,32 @@ Users are allowed:
 ## Installing (using pip)
 Installing virtual env:
 ```
-pip install virtualenv
+python3 -m pip install virtualenv
 ```
+
 Creating a virtual environment:
 ```
 virtualenv ENV
 ```
 
-Install django using pip:
+Activate the virtual environment:
+```
+source ENV/bin/activate
+```
+
+Install django (version 1.11) using pip:
 
 ``` 
-pip install django
+python3 -m pip install django==1.11
 ```
+
+Start server:
+```
+python3 manage.py runserver
+```
+
+Open a browser and go to localhost:8000
+
 ## Usage
 
 ```
