@@ -3,6 +3,14 @@
 <html>
 
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6245493204035838",
+    enable_page_level_ads: true
+  });
+</script>
 <!--    <script src="{% static " quiz/canvasjs.min.js " %}"></script>-->
 <script src="{% static "quiz/jquery-3.2.1.js" %}"></script>
 <script src="{% static "quiz/main.js" %}"></script>
@@ -16,6 +24,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
 </head>
 <style>
   @-webkit-keyframes banim {
@@ -31,15 +40,68 @@
   opacity:100;  
   overflow:hidden;
   }
+  .container {
+  position:fixed;
+  background-color:white;
+  margin:0% 0% 0% 0%;
+  height:100%;
+  width:100%;
+  }
 
-  .topheader {
-  background-color: #333;
-  color: #ddd;
-  text-align: center;
-  padding: 1% 0% 0% 0%;
-  text-decoration: none;
-  font-size: 27px;
-  font-family: 'Gloria Hallelujah', cursive;
+  .topsection {
+  margin:0px;
+  padding:0px;
+  top:0px;
+  background-color:#333;
+  color:#ddd;
+  height:15%;
+  z-index:10;
+  }
+  .firstrow {
+  margin:0px;
+  padding:0%;
+  clear:both;
+  width:100%;
+  height:60%;
+  }  
+  .title{
+  display:block;
+  padding:0px;
+  float:left;
+  width:80%;
+  height:5%;
+  }
+ .menuicon {
+  display:inline;
+  padding:0px 0px 0px 0px;
+  width:10%;
+  float:right;
+  }
+  .firstrow .title p{
+  margin:0px;
+  font-family:'Gloria Hallelujah',cursive;  
+  font-size:24px;
+  text-align:center;
+  vertical-align:middle;
+  }
+  @media (max-width: 767px) {
+  .firstrow .title p{
+  font-size:20px;
+  }
+  }
+  .firstrow .menuicon i{
+  font-size:48px;
+  float:right;  
+  }
+  @media (min-width: 768px) {
+  .menuicon {
+  display:none;
+  }
+  }
+  .secondrow {
+  top:0%;
+  height:40%;
+  width:100%;
   }
 
   .topnavicon li {
@@ -48,14 +110,31 @@
   display: block;
   color: f2f2f2;
   text-align: center;
-  padding: 7px 5px 7px 5px;
+  <!--padding: 7px 5px 7px 5px;-->
+  margin:0px;
+  padding:0px;
   text-decoration: none;
   font-size: 28px;
   width: 10%;
+  height:100%;
+  vertical-align: middle;
+  cursor:pointer;
+  }
+  @media (max-width: 767px) {
+  .topnavicon li {
+  overflow: hidden;
+  float:left;
+  display: block;
+  color: f2f2f2;
+  text-align: center;
+  padding: 7px 5px 7px 5px;
+  text-decoration: none;
+  font-size: 10px;
+  width: 5%;
   align: middle;
   cursor:pointer;
   }
-
+  }
   .topnavicon li.active {
   background-color: #f7786b;
   color: white;
@@ -65,7 +144,7 @@
   background-color: #ddd;
   color: black;
   }
-
+  
   .bottombar {
   background-color: #333;
   display: block;
@@ -80,7 +159,14 @@
   padding-right: 20px;
   color: #ddd;
   }
-  
+  @media (max-width: 767px) {
+  .bottomtext {
+  float: right;
+  font-size: 6px;
+  padding-right: 20px;
+  color: #ddd;
+  }
+  }
   ul.listing  {
   position:relative;
   list-style-type: none;
@@ -88,28 +174,54 @@
   padding: 0;
   overflow: hidden;
   background-color: #333;
-  <!--height:46%;-->
-  <!-- farge på menubar (sort)-->
+  height:100%;
+
   }
-  
+  @media (max-width: 767px) {
+  ul.listing  {
+  position:relative;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  font-size:10px;
+
+  }
+  }
   li.norm {
   float:left;
   cursor:pointer;
+  height:100%;
   }
   
   li p, .dropbtn {
   display: inline-block;
   color: #ddd;
   text-align: center;
-  padding: 12px 16px;
+  padding: 6px 16px;
+  text-decoration: none;
+  cursor:pointer;
+  margin:0;
+  height:100%;
+  vertical-align:middle;
+  }
+  
+  @media (max-width: 767px) {
+  li p, .dropbtn {
+  display: inline-block;
+  color: #ddd;
+  text-align: center;
+  padding:2px;
   text-decoration: none;
   cursor:pointer;
   margin:0;
   }
+  }  
   
   li p:hover {
   color: black;
-
+  
   }
   
   li p:hover,
@@ -117,9 +229,10 @@
   background-color: #f9f9f9;
   <!--farge på hover elementer -->color: black;
   }
-    
+  
   li.dropdown {
   display: inline-block;
+  
   }
   
   .dropdown-content {
@@ -138,32 +251,34 @@
   display: block;
   text-align: left;
   }
-
+  
   .dropdown-content p:hover {
   background-color: #ddd;
   <!--farge på dropdownliste sine elementer -->
   }
-	
+  
   .dropdown:hover .dropdown-content {
   display:block;
   }
+  
 
-  .menu {
-  position:fixed;
-  margin: 0% 0% 0% 0%;
-  width:100%;
-  height:12.5%;
-  z-index:10;
-  }
   .bottombar{
   position:fixed;
   bottom:0;
   height:6.5%;
   z-index:10;
   }
+  @media (max-width: 767px) {
+  .bottombar{
+  position:fixed;
+  bottom:0;
+  height:3%;
+  z-index:10;
+  }
+  }
   .screen {
   position:fixed;
-  top:12.5%;
+  top:15%;
   bottom:6.5%;
   background-image: url("https://newevolutiondesigns.com/images/freebies/white-wallpaper-11.jpg");
   heigth:80%;
@@ -171,13 +286,6 @@
   animation-name:banim;
   animation-duration:3s;
   
-  }
-  .container {
-  position:fixed;
-  background-color:white;
-  margin:0% 0% 0% 0%;
-  height:100%;
-  width:100%;
   }
   .categories_container {
   position:fixed;
@@ -196,18 +304,17 @@
   padding:10% 10% 10% 10%;
   color:#ddd;
   font-size:20px;
-
+  
   }
   a {
   color:#ddd;
   }
-  .minicontainer{
+  .statisticscontainer,.newscontainer,.aboutcontainer{
   position:fixed;
   display:block;
   left:20%;
-  top:15%;
-  width:40%;
-
+  top:20%;
+  width:40%;  
   background-color:#333;
   color:#ddd;
   font-size:25px;
@@ -216,19 +323,31 @@
   padding:20px 20px 20px 20px;
   opacity:0.8;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  overflow:auto;
+  height:60%;
   }
-  .minicontent{
+  @media (max-width: 767px) {
+  .statisticscontainer,.newscontainer,.aboutcontainer{
+  width:100%;
+  left:0%;
+  height:82%;
+  padding:2%;
+  top:15%;
+  }
+  }
+  .scontent,.ncontent,.acontent{
   margin:0;
   font-size:15px;
-<!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  height:80%;
+  overflow:auto;
   }
-  #mh2 {
+  #sh2,#nh2,#ah2 {
   margin:0;
   font-size:25px;
   font-family: 'Gloria Hallelujah', cursive;
   text-align:center;
   }
-  .categorycontainer,.logincontainer{
+  .categorycontainer,.logincontainer,.mysitecontainer{
   position:fixed;
   display:block;
   left:10%;
@@ -244,47 +363,69 @@
   opacity:0.8;
   font-family:Courier;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-.hiscorecontainer{
-position:fixed;
-<!--position:relative;-->
-display:block;
-
-
-left:0.5%;
-right:0.5%;
-top:15%;
-background-color:#333;
-height:60%;
-<!--width:99%;-->
-<!--bottom:10%;-->
+  }
+  @media (max-width: 767px) {
+  .logincontainer{
+  left:0%;
+  top:15%;
+  width:96%;
+  height:82%;
+  padding:2%;
+  overflow:auto;
+  }
+  }
+  .hiscorecontainer,.playcontainer,.menucontainer{
+  position:fixed;
+  display:block;
+  left:0%;
+  right:0%;
+  top:15%;
   background-color:#333;
+  height:75%;
   color:#ddd;
-  <!--font-size:15px;-->
   z-index:100;
   display:none;
   padding:10px 20px 10px 20px;
   opacity:0.8;
+
   font-family:Courier;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 767px) {
+  .hiscorecontainer,.playcontainer,.menucontainer{
+  height:82%;
+  overflow:auto;
+  }
   }
   .hcontent::-webkit-scrollbar {
   display:none;
   }
-
-  .hcontent{
+  
+  .hcontent,.pcontent,.mecontent{
   position:relative;
   overflow:auto;
   height:80%;
-  background-color:#333;
-
+  background-color:#595959;
+  width:100%;
+  }
+  .pcontent a,.mecontent p {
+  text-decoration:none;
+  font-family:'Gloria Hallelujah',cursive;
+  text-align:center;
+  width:270px;
+  }
+  @media (max-width: 767px) {
+  .pcontent a {
+  text-decoration:none;
+  font-family:'Gloria Hallelujah',cursive;
+  text-align:center;
+  
+  }
   }
   .scrolliconcontainer{
   width:100%;
   background-color:#red;
-  border-radius:4px;
-  border-style:solid;
-  border-width:thin;
+  color:#ddd;
   }
   #scrolliconup,#scrollicondown{
   position:relative;
@@ -299,13 +440,12 @@ height:60%;
   .scrolliconcontainer:hover{
   cursor:pointer;
   }
-
+  
   .scrolliconcontainer:active{
   background-color:#f2f2f2;
   color:#333;
   }
-
-  #ch2,#lh2,#hh2 {
+  #ch2,#lh2,#hh2,#myh2,#ph2,#meh2 {
   margin:0;
   font-size:25px;
   font-family: 'Gloria Hallelujah', cursive;
@@ -317,10 +457,10 @@ height:60%;
   th {
   font-size:20px;
   }
-  #news,#contact,#about,#category,#login,#logout,#mysite,#highscore,#statistics{
+  #news,#about,#category,#login,#logout,#mysite,#highscore,#statistics,#play{
   font-family:Courier;
   }
-  #msg,#ccontainer,#hcontainer{
+  #scontainer,#ncontainer,#acontainer,#ccontainer,#hcontainer,#mcontainer,#pcontainer,#mecontainer{
   animation-name:msganim;
   animation-duration:0.3s;
   }
@@ -334,59 +474,102 @@ height:60%;
   animation-name:msganim;
   animation-duration:0.3s;
   }
-<!--#category_table {-->
-<!--float:left;-->
-<!--background-color:yellow;-->
+
+  @media (min-width: 768px) {
+  
+  }
+  @media (max-width: 767px) {
+  .secondrow {
+  display:none;
+  }  
+  #menubutton {
+  display:block;
+  font-size:40px;
+  }
+  }
+#menubutton:active{
+  background-color:#f9f9f9;
+  color:#333;
+}
+  .mecontent p{
+  width:100%;
+  font-size:20px;
+  margin:0px;
+  }  
+  .mecontent p:hover,mecontent p:active{
+  background-color:#f9f9f9;
+  color:black;
 }
 
-
+.material-icons{
+        -webkit-font-feature-settings: 'liga';
+        -moz-font-feature-settings: 'liga';
+        font-feature-settings: 'liga';
+}
 </style>
-
-<!--<body background="{% static "/quiz/wbackground.jpg"%}">-->
 <body>
   <div class="container">
-    <!--menu-->
-    <div class="menu">
-      <div class="topheader">The World's Biggest Quiz Database
+    <!-- header and menu are first row elements, links, tabs are second row....all are in topsection-->
+    <div class="topsection">
+      <div class="firstrow">
+	<div class="title"><p>The World's Biggest Quiz Database</p></div>
+	<div class="menuicon" id="menuicondiv"><i class="material-icons" id="menubutton">menu</i></div>
       </div>
-      <div class="topnavicon" id="home">
-	<li class="active"><i class="fa fa-home"></i></li>
+      <div class="secondrow">
+	<div class="topnavicon" id="home">
+	  <li class="active" style="vertical-slign:middle;"><i class="fa fa-home" style="vertical-align:middle;"></i></li>
+	</div>
+	<ul class="listing">
+	  <li class="norm"><p id="play">Play</p></li>
+	  <li class="norm"><p id="news">News</p></li>
+	  <li class="dropdown">	  
+	    <p class="dropbtn" id="category">Start Quiz</p>
+	    <div class="dropdown-content">
+	      {% for category in categories %}
+	      <p>{{ category }}</p> {% endfor %}
+	    </div>
+	  </li>
+	  <li class="norm" id="about-btn"><p id="about">About</p></li>
+	  <li class="norm" id="mysite-btn"><p id="mysite">My Site</p></li>
+	  <li class="norm" id="highscore-btn"><p id="highscore">Highscore</p></li>
+	  <li class="norm" id="statistics-btn"><p id="statistics">Statistics</p></li>
+	  <li style="float:right"><p id="login"></p></li>
+	</ul>
       </div>
-      <ul class="listing">
-	<li class="norm"><p id="news">News</p></li>
-	<li class="dropdown">	  
-	  <p class="dropbtn" id="category">Category</p>
-	  <div class="dropdown-content">
-            {% for category in categories %}
-            <p>{{ category }}</p> {% endfor %}
-	  </div>
-	</li>
-	<li class="norm"><p id="contact">Contact</p></li>
-	<li class="norm" id="about-btn"><p id="about">About</p></li>
-	<li class="norm" id="mysite-btn"><p id="mysite">My Site</p></li>
-	<li class="norm" id="highscore-btn"><p id="highscore">Highscore</p></li>
-	<li class="norm" id="statistics-btn"><p id="statistics">Statistics</p></li>
-	<li style="float:right"><p id="login"></p></li>
-      </ul>
     </div>
     <!--screen-->
     <div class="categories_container" id="cat_cont">
       <div class="categories" id="cat" style="visibility:hidden;">
-	<h2>Categories</h2>
+	<h2>Choose a Category</h2>
 	{% for category in categories %}
         <p>{{ category }}</p>
 	{% endfor %}
       </div>
     </div>
     <div class="screen" id="screen">
-      <div class="minicontainer" id="msg">
-	<h2 id="mh2"></h2>
-	<div class="minicontent" id="mc">
+      <div class="statisticscontainer" id="scontainer">
+	<h2 id="sh2"></h2>
+	<div class="scontent" id="sc">
+	</div>	
+      </div>
+      <div class="aboutcontainer" id="acontainer">
+	<h2 id="ah2"></h2>
+	<div class="acontent" id="ac">
+0;256;0c	</div>	
+      </div>
+      <div class="newscontainer" id="ncontainer">
+	<h2 id="nh2"></h2>
+	<div class="ncontent" id="nc">
 	</div>	
       </div>
       <div class="statisticscontainer" id="scontainer">
 	<h2 id="sh2"></h2>
 	<div class="scontent" id="sc">
+	</div>
+      </div>
+      <div class="mysitecontainer" id="mcontainer">
+	<h2 id="myh2"></h2>
+	<div class="mcontent" id="myc">
 	</div>
       </div>
       <div class="logincontainer" id="lcontainer">
@@ -397,7 +580,7 @@ height:60%;
 	</div>
       </div>
       <div class="hiscorecontainer" id="hcontainer">
-	<h2 id="hh2"></h2>
+	<h1 id="hh2"></h1>
 	<div class="scrolliconcontainer" id="scrolliconcontainerup">
 	  <i class="material-icons" id="scrolliconup">expand_more</i>
 	</div>
@@ -405,6 +588,20 @@ height:60%;
 	</div>
 	<div class="scrolliconcontainer" id="scrolliconcontainerdown">
 	  <i class="material-icons" id="scrollicondown">expand_less</i>
+	</div>
+      </div>
+      <div class="playcontainer" id="pcontainer">
+	<h1 id="ph2"></h1>
+	<div class="pcontent" id="pc">
+	</div>
+      </div>
+      <div class="menucontainer" id="mecontainer">
+	<h1 id="meh2">Menu</h1>
+	<div class="mecontent" id="mec">
+	  <p id="moblogin">Log In</p>
+	  <p id="mobplay">Play</p>
+	  <p id="mobhighscore">High Score</p>
+	  <p id="mobabout">About</p>
 	</div>
       </div>
       <div class="categorycontainer" id="ccontainer">
@@ -434,7 +631,7 @@ height:60%;
 	    <tr>
 	      <td><a href="/TV">TV</a></td>
 	      <td><a href="/Mountains">Mountains</a></td>
-	      <td><a href="/Kriger">Kriger</a></td>
+	      <td><a href="/Wars">Wars</a></td>
 	      <td><a href="/Math">Math</a></td>
 	      <td><a href="/Football">Football</a></td>
 	      <td><a href="/Alcohol">Alcohol</a></td>
@@ -511,23 +708,28 @@ height:60%;
 <!--    var cnumber = JSON.parse('{{ status|escapejs }}');-->
 
 window.onload = initialize();
+document.getElementById("play").addEventListener("click",play,false);
+document.getElementById("menuicondiv").addEventListener("click",menubutton,false);
+document.getElementById("moblogin").addEventListener("click",function(){setTimeout(login,100)});
+<!--document.getElementById("mobplay").addEventListener("click",play,false);-->
+document.getElementById("mobplay").addEventListener("click",function(){setTimeout(play,100)});
+document.getElementById("mobhighscore").addEventListener("click",function(){setTimeout(hiscore,100)});
+document.getElementById("mobabout").addEventListener("click",function(){setTimeout(about,100)});
 
 document.getElementById("home").addEventListener("click",home,false);
-document.getElementById("about").addEventListener("mouseover",about,false);
-document.getElementById("about").addEventListener("mouseleave",about,false);
-document.getElementById("contact").addEventListener("mouseover",contact,false);
-document.getElementById("contact").addEventListener("mouseleave",contact,false);
-document.getElementById("news").addEventListener("mouseover",news,false);
-document.getElementById("news").addEventListener("mouseleave",news,false);
-document.getElementById("category").addEventListener("mouseover",category,false);
-document.getElementById("category").addEventListener("mouseleave",category,false);
+document.getElementById("about").addEventListener("click",about,false);
+<!--document.getElementById("about").addEventListener("mouseleave",about,false);-->
+document.getElementById("news").addEventListener("click",news,false);
+<!--document.getElementById("news").addEventListener("mouseleave",news,false);-->
+document.getElementById("category").addEventListener("click",category,false);
+<!--document.getElementById("category").addEventListener("mouseleave",category,false);-->
 document.getElementById("ccontainer").addEventListener("mouseleave",leavecategory,false);
 document.getElementById("login").addEventListener("click",login,false);
 document.getElementById("screen").addEventListener("mouseleave",gone_off_screen,false);
-document.getElementById("statistics").addEventListener("mouseover",statistics,false);
-document.getElementById("statistics").addEventListener("mouseleave",statistics,false);
+document.getElementById("statistics").addEventListener("click",statistics,false);
+<!--document.getElementById("statistics").addEventListener("mouseleave",statistics,false);-->
 document.getElementById("highscore").addEventListener("click",hiscore,false);
-
+document.getElementById("mysite").addEventListener("click",mysite,false);
 
 document.getElementById("scrolliconcontainerup").addEventListener("click",scrollup,false);
 document.getElementById("scrolliconcontainerdown").addEventListener("click",scrolldown,false);

@@ -23,8 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ed6$fgmk2$cuub@1r5&b7+^n@@6gec9yz3xxfna&yz*()xx^j*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 ALLOWED_HOSTS = ['huse007.pythonanywhere.com','www.qdb.no']
 
 
@@ -49,7 +48,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+SECURE_SSL_REDIRECT = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600

@@ -201,7 +201,7 @@ def gethiscore(request):
     hiscore_map = {}
     if request.method =='GET':
         hiscore_map ={}
-        for i in Category.objects.all():
+        for i in Category.objects.all().order_by('category_name'):
             h = i.categoryscore_set.all().order_by('-points')[:10]
             category_obj_list = list(h)
             category_table = []

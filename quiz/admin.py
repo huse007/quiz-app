@@ -1,13 +1,14 @@
 from django.contrib import admin
-from .models import Question,Choice,Person,Category
+from .models import Question,Choice,Person,Category,Categoryscore
 # Register your models here.
 
 #admin.site.register(Question)
 #admin.site.register(Choice)
 #admin.site.register(Person)
 admin.site.register(Category)
-
-
+class CategoryscoreAdmin(admin.ModelAdmin):
+    list_display = ('person','category','points')
+admin.site.register(Categoryscore,CategoryscoreAdmin)
 class ChoiceInline(admin.StackedInline):
     model = Choice
     extra = 3

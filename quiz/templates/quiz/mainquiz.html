@@ -8,7 +8,7 @@
   li.liste a{
   width:83%;
   }
-
+ @media (min-width: 768px) {
   @-webkit-keyframes qframe_anim {
   0% {background-color:#fff; top:-10%;transform:scale(0);}
   100% {background-color:#333;top:17%;transform:scale(1);}
@@ -45,18 +45,8 @@
   }
   @keyframe example2 {
   }
-  @-webkit-keyframes bubble {
-  0%{top:100%;left:60%;}
-  100%{top:0%;left:80%;}
-  }
-  @-webkit-keyframes bubble1 {
-  0%{top:100%;left:60%;}
-  100%{top:0%;left:70%;}
-  }
-  @-webkit-keyframes bubble2 {
-  0%{top:100%;left:60%;}
-  100%{top:0%;left:85%;}
-  }
+}
+  @media (min-width: 768px) {
   .qframe {
   position:fixed;
   display:block;
@@ -74,6 +64,26 @@
   <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
   z-index: 1;  
   }
+}
+  @media (max-width: 767px) {
+  .qframe {
+  position:fixed;
+  display:block;
+  color:#ddd;
+  top:15%;
+  left:0%;
+  right:0%;
+  margin:auto;
+  width:100%;
+  height:10%;
+  background-color:#333;
+  animation-name:qframe_anim;
+  animation-duration:2.5s;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  z-index: 1;  
+  }
+  }
   .qtext {
   color:#ddd;
   font-size:25px;
@@ -81,6 +91,11 @@
   position:relative;
   margin:0;
   padding:5% 5% 5% 5%;
+  }
+  @media (max-width: 767px) {
+  .qtext {
+  font-size:15px;
+  }
   }
   .cframe {
   position:fixed;
@@ -94,10 +109,21 @@
   margin:auto;
   padding:2% 2% 2% 2%;
   animation-name:cframe_anim;
-  animation-duration:2.5s;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!-- box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  animation-duration:2.5s;  
   z-index: 1;                                      
+  }
+  @media (min-width: 768px) {
+  .cframe {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);-->
+  }
+  }
+  @media (max-width: 767px) {
+  .cframe{
+  top:25%;
+  left:0%;
+  right:0%;
+  width:100%;
+  }
   }
   .outerstatus {
   margin:auto;
@@ -113,26 +139,36 @@
   display:inline-block;
   animation-name:status;
   animation-duration:3s;
-  
-
+  }
+  @media (max-width: 767px) {
+  .status {
+  top:63%;
+  }
   }
 
   .button {
-border-radius: 4px;
-padding:30px 20px 20px 20px;
+  border-radius: 4px;
+  padding:30px 20px 20px 20px;
   background-color: #4ca450;
   border: none;
   color: #FFFFFF;
   text-align: center;
   font-size: 20px;
-width:97%;
+  width:97%;
   transition: all 0.0s;
   cursor: pointer;
-margin: 5px;
+  margin: 5px;
   opacity:0.8;
   outline:none;
   }
-
+  @media (max-width: 767px) {
+  .button {
+  padding:12px 8px 8px 8px;
+  font-size:15px;
+  width:94%;
+  }
+  }
+  
   #button1 {
   position:relative;
   animation-name:button1;
@@ -199,14 +235,35 @@ position:relative;
   color:#ddd;
   animation-name:data_anim;
   animation-duration:2.5s;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-<!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->                                                                                                
-       
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->                                                                                                
+  
+  }
+  @media (max-width: 767px) {
+  .datacontainer {
+  position:fixed;
+  padding:2% 0% 5% 0%;
+  display:block;
+  top:65%;
+  left:0%;
+  width:100%;  
+  background-color:#333;
+  color:#ddd;
+  animation-name:data_anim;
+  animation-duration:2.5s;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+  }
   }
   .data {
   position:relative;
   font-size:25px;  
   }
+  @media (max-width: 767px) {
+  .data {
+  position:relative;
+  font-size:15px;  
+  }
+}
 #skillbar {
   position:relative;
   width:100%;
@@ -241,95 +298,40 @@ position:relative;
 <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
   <!-- box-shadow: 10px 10px 5px #888888;-->
   }
-  
+  @media (max-width: 767px) {
+  .infocontainer {
+  position:fixed;
+  left:0%;
+  top:85%;
+  width:100%;
+  height:12%;
+  background-color:#333;
+  padding:1% 1% 1% 1%;
+  font-size:15px;
+<!--  animation-name:info_anim;
+  animation-duration:2.5s;-->
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
+<!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  <!-- box-shadow: 10px 10px 5px #888888;-->
+  }
+  }
   .info {
   position:relative;
   width:100%;
   color:#ddd;
   }
-  .material-icons {
+  .checkpoints .material-icons {
   visibility:hidden;
+  font-size:48px;
   }
-
+  @media (max-width: 767px) {
+  .checkpoints .material-icons {
+  visibility:hidden;
+  font-size:28px;
+  }
+}
   .categorycontainer:hover~.datacontainer,.categorycontainer:hover~.infocontainer,.categorycontainer:hover~.qframe,.categorycontainer:hover~.cframe{
   opacity:0;
-  }
-  .bcontainer {
-  position:fixed;
-  display:block;
-  color:#ddd;
-  top:0%;
-  left:80%;
-  right:10%;
-  margin:auto;
-  width:5%;
-  height:10%;
-  border-radius:50%;  
-  background-color:lightblue;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
-  z-index: 1;
-  text-align:center;
-  opacity:0.7;
-  animation-name:bubble;
-  animation-duration:5s;
-  }
-  .bframe{
-  position:relative;
-  padding:0;
-  margin:0;
-  top:15%;
-  }
-  .bframe p{
-  margin:0;
-  font-size:15px;
-  font-family: 'Gloria Hallelujah', cursive;
-  color:black;
-  }
-  #bubble1 {
-  position:fixed;
-  display:block;
-  color:#ddd;
-  top:0%;
-  left:90%;
-  right:10%;
-  margin:auto;
-  width:5%;
-  height:10%;
-  border-radius:50%;  
-  background-color:lightblue;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
-  z-index: 1;
-  text-align:center;
-  opacity:0.7;
-  transform:scale(0.85);
-  animation-name:bubble1;
-  animation-duration:5s;
-  }
-  #bubble2 {
-  position:fixed;
-  display:block;
-  color:#ddd;
-  top:0%;
-  left:80%;
-  right:20%;
-  margin:auto;
-  width:5%;
-  height:10%;
-  border-radius:50%;  
-  background-color:lightblue;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
-  z-index: 1;
-  text-align:center;
-  opacity:0.7;
-  transform:scale(0.7);
-  animation-name:bubble2;
-  animation-duration:5s;
-  }
-  #bubble1,#bubble2,#bc {
- -webkit-animation-play-state:paused;
   }
 
 </style>
@@ -351,16 +353,16 @@ position:relative;
   <div class="info">
     Correct:
     <div class="checkpoints">
-      <i class="material-icons" id="check1" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check2" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check3" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check4" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check5" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check6" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check7" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check8" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check9" style="font-size:48px;color:#4ca450;">check_circle</i>
-      <i class="material-icons" id="check10" style="font-size:48px;color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check1" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check2" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check3" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check4" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check5" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check6" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check7" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check8" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check9" style="color:#4ca450;">check_circle</i>
+      <i class="material-icons" id="check10" style="color:#4ca450;">check_circle</i>
     </div>
   </div>
 </div>
@@ -377,26 +379,19 @@ position:relative;
   <button id="button3" onclick=check(2) class="button"><span></span></button><br>
   <button id="button4" onclick=try_again() class="button"><span></span></button><br>
 </div>
-<div id="bc" class="bcontainer">
-  <div id="bf" class="bframe">
-  <p>Bonus <br>Point</p>
-  </div>
-</div>
-<div class="bubble1" id="bubble1"></div>
-<div class="bubble2" id="bubble2"></div>
 <script>
   document.getElementById("news").addEventListener("mouseover",hide_elements_on_menu_pop,false);
-  document.getElementById("contact").addEventListener("mouseover",hide_elements_on_menu_pop,false);
   document.getElementById("about").addEventListener("mouseover",hide_elements_on_menu_pop,false);
-  document.getElementById("category").addEventListener("mouseover",hide_elements_on_menu_pop,false);
   document.getElementById("news").addEventListener("mouseleave",show_elements_on_menu_hide,false);
-  document.getElementById("contact").addEventListener("mouseleave",show_elements_on_menu_hide,false);
   document.getElementById("about").addEventListener("mouseleave",show_elements_on_menu_hide,false);
   document.getElementById("category").addEventListener("mouseleave",check_if_screen,false);
   document.getElementById("ccontainer").addEventListener("mouseleave",show_elements_on_menu_hide,false);
   document.getElementById("statistics").addEventListener("mouseover",hide_elements_on_menu_pop,false);
   document.getElementById("statistics").addEventListener("mouseleave",show_elements_on_menu_hide,false);
   document.getElementById("highscore").addEventListener("click",deal_with_hiscore,false);
+  document.getElementById("play").addEventListener("click",deal_with_play,false);
+  document.getElementById("menuicondiv").addEventListener("click",deal_with_menuicondiv,false);
+
  <!--document.getElementById("highscore").addEventListener("mouseleave",show_elements_on_menu_hide,false);  -->
 <!--  window.onload=init1();-->
   b4 = document.getElementById("button4");
@@ -448,18 +443,7 @@ init(myq,myc);
   void s.offsetWidth;
   s.classList.add("status");
 }
-function animate_bubbles() {
-console.log("anim_bubbles() ",points);
-s1 =document.getElementById("bubble1");
-s2 =document.getElementById("bubble2");
-s1.classList.remove("bubble1");
-s2.classList.remove("bubble2");
-void s1.offsetWidth;
-void s2.offsetWidth;
-s1.classList.add("bubble1");
-s2.classList.add("bubble2");
 
-}
 function animate_all() {
   console.log("animate");                                                                                                                                       
   element1=document.getElementById("button1"); 
@@ -524,32 +508,42 @@ submit_score(correct+bonus);
 function display_check(answer_status) {
 var ci=document.getElementById(check_icon[q]);
 ci.innerHTML =answer_status;
-if(answer_status != "check_circle") {
+if(answer_status == "cancel"||answer_status=="alarm") {
 ci.style.color="#f7786b";
+}
+if(answer_status=="star"){
+ci.style.color="#ffff00";
 }
 ci.style.visibility="visible";
 }
 
   
 function check(b){                                                               
-  console.log("check"+b);
-  clearInterval(progressBarId);
-  animate_all();
-  moveprogress();
+var is_bonus = 0;
+console.log("check"+b);
+clearInterval(progressBarId);
+animate_all();
+moveprogress();
 
 if(b==99) {                                                                  
-  document.getElementById("correctstatus").innerHTML = "TIME OUT!";
-  display_check("alarm");
+document.getElementById("correctstatus").innerHTML = "TIME OUT!";
+display_check("alarm");
 }                                                                            
 else if(myc[q][b].fields.is_correct) {
 if(points>75){
 document.getElementById("correctstatus").innerHTML = "BONUS!";
 bonus++;
+is_bonus = 1;
 }
 else{
   document.getElementById("correctstatus").innerHTML = "CORRECT!";
 }
+if(is_bonus){
+display_check("star");
+}
+else{
 display_check("check_circle");
+}
 correct++;
 
         console.log("correct");                                                  
@@ -617,6 +611,22 @@ function move() {
   
   function deal_with_hiscore() {
   if(document.getElementById("hcontainer").style.display=="block") {
+  show_elements_on_menu_hide();
+  }
+  else{
+  hide_elements_on_menu_pop();
+  }
+  }
+  function deal_with_play() {
+  if(document.getElementById("pcontainer").style.display=="block") {
+  show_elements_on_menu_hide();
+  }
+  else{
+  hide_elements_on_menu_pop();
+  }
+  }
+  function deal_with_menuicondiv() {
+  if(document.getElementById("mecontainer").style.display=="block") {
   show_elements_on_menu_hide();
   }
   else{
