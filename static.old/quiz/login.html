@@ -1,0 +1,16 @@
+{% extends 'quiz/main.html' %}
+
+{% block loginblock %}
+
+<div class="infotext">  
+    <h2>Log In</h2>    
+  
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Log in</button>
+   <p>If you don'tt have an account, <a href="/signup" class="links">register</a> and create an account.</p>
+  </form>
+  </div>
+{% endblock %}
+

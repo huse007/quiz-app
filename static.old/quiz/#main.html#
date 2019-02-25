@@ -1,0 +1,596 @@
+>0;256;0c{% load static %}
+
+<html>
+
+<head>
+<!--    <script src="{% static " quiz/canvasjs.min.js " %}"></script>-->
+<script src="{% static "quiz/jquery-3.2.1.js" %}"></script>
+<script src="{% static "quiz/main.js" %}"></script>
+
+<!--<script src="{% static "quiz/rango-ajax.js" %}"></script>-->
+    <!--  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+    <!--  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
+    <!--<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style2.css'%}">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+  @-webkit-keyframes banim {
+  0% {opacity:0;}
+  100% {opacity:100;}
+  }
+  @-webkit-keyframes msganim {
+  0% {opacity:0;transform:scale(0);}
+  100% {opacity:0.8;transform:scale(1);}
+  }
+  body {
+  margin: 0px 0px 0px 0px;
+  opacity:100;  
+  overflow:hidden;
+  }
+
+  .topheader {
+  background-color: #ff0000;
+  color: #ddd;
+  text-align: center;
+  padding: 1% 0% 0% 0%;
+  text-decoration: none;
+  font-size: 27px;
+  font-family: 'Gloria Hallelujah', cursive;
+  }
+
+  .topnavicon li {
+  overflow: hidden;
+  float:left;
+  display: block;
+  color: f2f2f2;
+  text-align: center;
+  padding: 7px 5px 7px 5px;
+  text-decoration: none;
+  font-size: 28px;
+  width: 10%;
+  align: middle;
+  cursor:pointer;
+  }
+
+  .topnavicon li.active {
+  background-color: #f7786b;
+  color: white;
+  }
+  
+  .topnavicon li:hover {
+  background-color: #ddd;
+  color: black;
+  }
+
+  .bottombar {
+  background-color: #333;
+  display: block;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  }
+  
+  .bottomtext {
+  float: right;
+  font-size: 17px;
+  padding-right: 20px;
+  color: #ddd;
+  }
+  
+  ul.listing  {
+  position:relative;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  <!--height:46%;-->
+  <!-- farge på menubar (sort)-->
+  }
+  
+  li.norm {
+  float:left;
+  cursor:pointer;
+  }
+  
+  li p, .dropbtn {
+  display: inline-block;
+  color: #ddd;
+  text-align: center;
+  padding: 12px 16px;
+  text-decoration: none;
+  cursor:pointer;
+  margin:0;
+  }
+  
+  li p:hover {
+  color: black;
+
+  }
+  
+  li p:hover,
+  .dropdown:hover .dropbtn {
+  background-color: #f9f9f9;
+  <!--farge på hover elementer -->color: black;
+  }
+    
+  li.dropdown {
+  display: inline-block;
+  }
+  
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  <!-- farge på dropdown -->min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  }
+  
+  .dropdown-content p {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  }
+
+  .dropdown-content p:hover {
+  background-color: #ddd;
+  <!--farge på dropdownliste sine elementer -->
+  }
+	
+  .dropdown:hover .dropdown-content {
+  display:block;
+  }
+
+  .menu {
+  position:fixed;
+  margin: 0% 0% 0% 0%;
+  width:100%;
+  height:12.5%;
+  z-index:10;
+  }
+  .bottombar{
+  position:fixed;
+  bottom:0;
+  height:6.5%;
+  z-index:10;
+  }
+  .screen {
+  position:fixed;
+  top:12.5%;
+  bottom:6.5%;
+  background-image: url("https://newevolutiondesigns.com/images/freebies/white-wallpaper-11.jpg");
+  heigth:80%;
+  width:100%;
+  animation-name:banim;
+  animation-duration:3s;
+  
+  }
+  .container {
+  position:fixed;
+  background-color:white;
+  margin:0% 0% 0% 0%;
+  height:100%;
+  width:100%;
+  }
+  .categories_container {
+  position:fixed;
+  display:block;
+  left:20%;
+  top:20%;
+  width:40%;
+  height:40%;
+  background-color:#333;
+  color:#ddd;
+  z-index:100;
+  visibility:hidden;
+  }
+  .categories{
+  position:relative;
+  padding:10% 10% 10% 10%;
+  color:#ddd;
+  font-size:20px;
+
+  }
+  a {
+  color:#ddd;
+  }
+  .minicontainer{
+  position:fixed;
+  display:block;
+  left:20%;
+  top:15%;
+  width:40%;
+
+  background-color:#333;
+  color:#ddd;
+  font-size:25px;
+  z-index:100;
+  display:none;
+  padding:20px 20px 20px 20px;
+  opacity:0.8;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  .minicontent{
+  margin:0;
+  font-size:15px;
+<!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  }
+  #mh2 {
+  margin:0;
+  font-size:25px;
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align:center;
+  }
+  .categorycontainer,.logincontainer{
+  position:fixed;
+  display:block;
+  left:10%;
+  top:20%;
+  width:60%;
+  height:40%;
+  background-color:#333;
+  color:#ddd;
+  font-size:15px;
+  z-index:100;
+  display:none;
+  padding:20px 20px 20px 20px;
+  opacity:0.8;
+  font-family:Courier;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+.hiscorecontainer{
+position:fixed;
+<!--position:relative;-->
+display:block;
+
+
+left:0.5%;
+right:0.5%;
+top:15%;
+background-color:#333;
+height:60%;
+<!--width:99%;-->
+<!--bottom:10%;-->
+  background-color:#333;
+  color:#ddd;
+  <!--font-size:15px;-->
+  z-index:100;
+  display:none;
+  padding:10px 20px 10px 20px;
+  opacity:0.8;
+  font-family:Courier;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  .hcontent::-webkit-scrollbar {
+  display:none;
+  }
+
+  .hcontent{
+  position:relative;
+  overflow:auto;
+  height:80%;
+  background-color:#333;
+
+  }
+  .scrolliconcontainer{
+  width:100%;
+  background-color:#red;
+  border-radius:4px;
+  border-style:solid;
+  border-width:thin;
+  }
+  #scrolliconup,#scrollicondown{
+  position:relative;
+  left:50%;
+  right:10%;
+  font-size:20px;
+  }
+  #scrolliconcontainerdown{
+  visibility:hidden;
+  }
+  
+  .scrolliconcontainer:hover{
+  cursor:pointer;
+  }
+
+  .scrolliconcontainer:active{
+  background-color:#f2f2f2;
+  color:#333;
+  }
+
+  #ch2,#lh2,#hh2 {
+  margin:0;
+  font-size:25px;
+  font-family: 'Gloria Hallelujah', cursive;
+  text-align:center;
+  }
+  .categorylist {
+  text-align:left;
+  }
+  th {
+  font-size:20px;
+  }
+  #news,#contact,#about,#category,#login,#logout,#mysite,#highscore,#statistics{
+  font-family:Courier;
+  }
+  #msg,#ccontainer,#hcontainer{
+  animation-name:msganim;
+  animation-duration:0.3s;
+  }
+  #news:hover~minicontainer {
+  animation-play-state:running;
+  }
+  #category:hover~categorycontainer{
+  animation-paly-state:running;<!--stavefeil-->
+  }
+  #highscore:hover~hiscorecontainer{
+  animation-name:msganim;
+  animation-duration:0.3s;
+  }
+<!--#category_table {-->
+<!--float:left;-->
+<!--background-color:yellow;-->
+}
+
+
+</style>
+
+<!--<body background="{% static "/quiz/wbackground.jpg"%}">-->
+<body>
+  <div class="container">
+    <!--menu-->
+    <div class="menu">
+      <div class="topheader">The World's Biggest Quiz Databases2
+      </div>
+      <div class="topnavicon" id="home">
+	<li class="active"><i class="fa fa-home"></i></li>
+      </div>
+      <ul class="listing">
+	<li class="norm"><p id="news">News</p></li>
+	<li class="dropdown">	  
+	  <p class="dropbtn" id="category">Category</p>
+	  <div class="dropdown-content">
+            {% for category in categories %}
+            <p>{{ category }}</p> {% endfor %}
+	  </div>
+	</li>
+	<li class="norm"><p id="contact">Contact</p></li>
+	<li class="norm" id="about-btn"><p id="about">About</p></li>
+	<li class="norm" id="mysite-btn"><p id="mysite">My Site</p></li>
+	<li class="norm" id="highscore-btn"><p id="highscore">Highscore</p></li>
+	<li class="norm" id="statistics-btn"><p id="statistics">Statistics</p></li>
+	<li style="float:right"><p id="login">{{ status }}</p></li>
+      </ul>
+    </div>
+    <!--screen-->
+    <div class="categories_container" id="cat_cont">
+      <div class="categories" id="cat" style="visibility:hidden;">
+	<h2>Categories</h2>
+	{% for category in categories %}
+        <p>{{ category }}</p>
+	{% endfor %}
+      </div>
+    </div>
+    <div class="screen" id="screen">
+      <div class="minicontainer" id="msg">
+	<h2 id="mh2"></h2>
+	<div class="minicontent" id="mc">
+	</div>	
+      </div>
+      <div class="statisticscontainer" id="scontainer">
+	<h2 id="sh2"></h2>
+	<div class="scontent" id="sc">
+	</div>
+      </div>
+      <div class="logincontainer" id="lcontainer">
+	<h2 id="lh2"></h2>
+	<div class="lcontent" id="lc">
+	  {% block loginblock %}
+	  {% endblock loginblock %}
+	</div>
+      </div>
+      <div class="hiscorecontainer" id="hcontainer">
+	<h2 id="hh2"></h2>
+	<div class="scrolliconcontainer" id="scrolliconcontainerup">
+	  <i class="material-icons" id="scrolliconup">expand_more</i>
+	</div>
+	<div class="hcontent" id="hc">
+	</div>
+	<div class="scrolliconcontainer" id="scrolliconcontainerdown">
+	  <i class="material-icons" id="scrollicondown">expand_less</i>
+	</div>
+      </div>
+      <div class="categorycontainer" id="ccontainer">
+	<h2 id="ch2"></h2>
+	<div class="categorycontent" id="cc">
+	  <table class="categorylist" cellspacing="10" >
+	    <tr>
+	      <th>Culture</th>
+	      <th>Geography</th>
+	      <th>History</th>
+	      <th>Science</th>
+	      <th>Sports</th>
+	      <th>Food</th>
+	      <th>Language</th>
+	      <th>Politics</th>
+	    </tr>
+	    <tr>
+	      <td><a href="/Music">Music</a></td>
+	      <td><a href="/Geography">Geography</a></td>
+	      <td><a href="/History">History</a></td>
+	      <td><a href="/Biology">Biology</a></td>
+	      <td><a href="/Sport">Sport</a></td>
+	      <td><a href="/Food">Food</a></td>
+	      <td><a href="/Language">Language</a></td>
+	      <td><a href="/News">News</a></td>
+	    </tr>
+	    <tr>
+	      <td><a href="/TV">TV</a></td>
+	      <td><a href="/Mountains">Mountains</a></td>
+	      <td><a href="/Kriger">Kriger</a></td>
+	      <td><a href="/Math">Math</a></td>
+	      <td><a href="/Football">Football</a></td>
+	      <td><a href="/Alcohol">Alcohol</a></td>
+	      <td><a href="/French">French</a></td>
+	      <td><a href="/Politics">Politics</a></td>
+	    </tr>
+	    <tr>
+	      <td><a href="/Movies">Movies</a></td>
+	      <td><a href="/Rivers">Rivers</a></td>
+	      <td><a href="/Kings">Kings and emperors</a></td>
+	      <td><a href="/Physics">Physics</a></td>
+	      <td></td>
+	      <td></td>
+	      <td></td>
+	      <td><a href="/Economy">Economy</a></td>
+	    </tr>
+	    <tr>
+	      <td><a href="/Radio">Radio</a></td>
+	      <td></td>
+	      <td><a href="/Mythology">Mythology</a></td>
+	      <td><a href="/Telecom">Telecom</a></td>
+	      <td></td>
+	      <td></td>
+	      <td><a href="/Norwegian">Norwegian</a></td>
+	      <td></td>
+	    </tr>
+	    <tr>
+	      <td><a href="/Theatre">Teathre</a></td>
+	      <td></td>
+	      <td></td>
+	      <td><a href="/Computers">Computers</a></td>
+	      <td></td>
+	      <td></td>
+	      <td><a href="/English">English</a></td>
+	      <td></td>
+	    </tr>
+	    <tr>
+	      <td><a href="/Art">Art</a></td>
+	      <td></td>
+	      <td></td>
+	      <td><a href="/Chemistry">Chemistry</a></td>
+	      <td></td>
+	      <td></td>
+	      <td></td>
+	      <td></td>
+	    </tr>
+	    	    <tr>
+	      <td></td>
+	      <td></td>
+	      <td></td>
+	      <td><a href="/Programming">Programming</a></td>
+	      <td></td>
+	      <td></td>
+	      <td></td>
+	      <td></td>
+	    </tr>
+	  </table>
+	</div>
+      </div>
+      
+      {% block contentframe %}
+      {% endblock contentframe %}
+    </div>
+    <!--bottom-->
+    <div class="bottombar">
+      <p class="bottomtext">
+	by Anders Huse
+      </p>
+    </div>
+    
+  </div>
+  <script>
+<!--    var qnumber = JSON.parse('{{ qnumber|escapejs }}'); -->
+<!--    var cnumber = JSON.parse('{{ cnumber|escapejs }}'); -->
+window.onload = initialize();
+
+    document.getElementById("home").addEventListener("click",home,false);
+    document.getElementById("about").addEventListener("mouseover",about,false);
+    document.getElementById("about").addEventListener("mouseleave",about,false);
+    document.getElementById("contact").addEventListener("mouseover",contact,false);
+    document.getElementById("contact").addEventListener("mouseleave",contact,false);
+    document.getElementById("news").addEventListener("mouseover",news,false);
+    document.getElementById("news").addEventListener("mouseleave",news,false);
+    document.getElementById("category").addEventListener("mouseover",category,false);
+document.getElementById("category").addEventListener("mouseleave",category,false);
+/*    document.getElementById("category").addEventListener("click",leavecategory,false);*/
+document.getElementById("ccontainer").addEventListener("mouseleave",leavecategory,false);
+document.getElementById("login").addEventListener("click",login,false);
+/*document.getElementById("login").addEventListener("mouseleave",login,false);*/
+document.getElementById("lcontainer").addEventListener("mouseleave",leavelogin,false);
+    document.getElementById("screen").addEventListener("mouseleave",gone_off_screen,false);
+    document.getElementById("statistics").addEventListener("mouseover",statistics,false);
+    document.getElementById("statistics").addEventListener("mouseleave",statistics,false);
+document.getElementById("highscore").addEventListener("click",hiscore,false);
+
+
+document.getElementById("scrolliconcontainerup").addEventListener("click",scrollup,false);
+document.getElementById("scrolliconcontainerdown").addEventListener("click",scrolldown,false);
+    /*  function drop() {
+  var msg ="hei";
+  console.log("drop()");
+  $.get("/getmsg",{"msg":msg},function(data2) {
+  console.log(data2);
+  $('#msg').html(data2);
+  });}
+  
+  function getdata() {
+  var element = document.getElementById("msg");
+  if(element.style.display==='none') {
+  element.style.display ='block';
+  }
+  else {
+  element.style.display='none';
+  }
+  console.log("getdata()");
+  var send_msg = "sending";
+  $.get("/getdata",{"msg":send_msg},function(receiveddata) {
+  var categories = JSON.parse(receiveddata);
+  for(i=0;i<categories.length;i++){
+	     var para = document.createElement("a");
+	     para.links=("/Physics");
+	     var brake = document.createElement("br");
+	     var node = document.createTextNode(categories[i].fields["category_name"]);
+	     para.appendChild(node);
+	     para.appendChild(brake);
+
+	     element.appendChild(para);
+	     element.style.visibility="visible";
+	     }});}
+				 
+				  <!--  var categories = JSON.parse('{{ receiveddata|escapejs }}'); -->
+  
+  
+  */
+  </script>
+
+</body>
+
+</html>
+
+<!--
+<body>
+  <div class="page-header">
+    <h1>The Worlds Biggest Quiz Database</h1>
+  </div>
+  <div class="mainwindow">
+    
+    {% block menu %}
+    {% endblock menu %}
+    
+    <div class="rightwindow">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+  <script src="{% static "quiz/startquiz.js" %}"></script>
+</body>
+
+-->
