@@ -1,0 +1,11 @@
+{% extends 'quiz/info.html' %}
+{% block content %}
+<div class="infotext">
+  <p>You are logged in as {{user}}.</p>
+  <form actiion ="" method = "post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" label="Submit">
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,253 @@
+{% load static %}
+
+<html>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  body {
+  margin:0;
+  }
+  .topheader {
+  position:fixed;
+  background-color:#333;
+  color: #ddd;
+  text-align: center;
+  padding: 20px 0px 0px 0px;
+  text-decoration: none;
+  font-size: 27px;
+  width:100%;
+
+  }
+  .topnav {
+  overflow:hidden;
+  background-color:#333;
+  
+  }
+  .topnavicon li {
+  height:20px;
+  overflow:hidden;
+  float:left;
+  display:block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 0px;
+  text-decoration: none;
+  font-size: 28px;
+  width:10%;
+  align:middle;
+  }  
+  .topnav li {
+  height:20px;
+  overflow:hidden;
+  float:left;
+  display:block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 0px;
+  text-decoration: none;
+  font-size: 15px;
+width:10%;
+  }  
+  
+  
+  .topnav li:hover, .dropdown:hover .dropbtn{
+  background-color: #ddd;
+  color: black;
+  }
+  
+  .topnavicon li.active {
+  background-color:#f7786b; <!--#4CAF50;-->
+  color: white;
+  }
+  .topnavicon li:hover {
+  background-color: #ddd;
+  color:black;
+  }
+
+  .bottombar {
+  background-color:#333;
+  display:block;
+  position:fixed;
+  bottom:0;
+  width:100%;
+  
+
+  }
+  .bottomtext {
+  font-size:17px;
+  text-align:right;
+  margin-right:20px;
+  color:#ddd;
+  }
+  bottombar.icon-bar.i {
+  color:#fff !important;
+  }
+  a.nc_tweet {
+  color:#fff !important;
+  font-size:40px;
+  }
+  
+
+  .icon-bar {
+  width: 100%;
+  background-color: #333;
+  overflow: auto;
+  }
+  
+  .icon-bar li {
+  float: left;
+  width: 10%;
+  text-align: center;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 36px;
+  }
+  
+  .icon-bar a:hover {
+    background-color: #000;
+  }
+  
+  .active {
+  <!--background-color: #4CAF50 !important;-->
+  background-color: #FFFFFF !important;
+
+  }
+  .contentwindow {
+  align:center:
+  display:block;
+  }
+  #contentwrapper {
+  float:left;
+
+  padding-top:110px;
+  padding-left:10px;
+  }
+  #contentleft {
+  overflow:hidden;
+  background-color:#ba235B;
+  display:inline-block;
+  float:left;
+  }
+  #contentright {
+  display:inline-block;
+
+  float:left;
+  background-color:#FFFFFF;
+  }
+  
+  
+  a.dropdown:hover .dropdown-content{
+  display:block;
+  }
+
+
+  
+
+  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  }
+  li {
+  float:left;
+  }
+  li a, .dropbtn {
+  text-decoration:none;
+  color:#ddd;
+  }
+  li a:hover, .dropdown:hover, .dropbtn {
+  background-color:red;
+  }
+  
+  li.dropdown {
+  display:inline-block;
+  }
+  .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  }
+  .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  }
+  .dropdown-content a:hover {
+  background-color: #f1f1f1
+  }
+  
+</style>
+  <body>
+    <div class="topheader">The World's Biggest Quiz Database
+      <div class="topnavicon">	
+	<li class="active" href="/main"><i class="fa fa-home"></i></li>
+      </div>
+<!--    <div class="topnav">-->
+      <li><a href="#news">News</a></li>
+      <li class="dropdown" href="/categories2">
+	<a href="javascript:void(0)" class="dropbtn">Category</a>
+	<div class="dropdown-content">
+	  <a href="#">Link 1</a>
+	  <a href="#">Link 2</a>
+	  <a href="#">Link 3</a>
+	</div>
+      </li>
+	<li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+      <li style="float:right"><a href="/quiz/login">Login</a></li>
+      
+<!--    </div>-->
+    </div>
+    <div id="contentwrapper">
+      
+      <div id="contentleft">
+        {% block contentleft %}
+	{% endblock contentleft %}
+      </div>
+      <div id="contentright">
+	{% block contentright %}
+	{% endblock contentright %}
+      </div>
+      </div>
+      <div class="bottombar">
+      <p class="bottomtext">
+	by Anders Huse
+      </p>
+    </div>
+  </body>
+</html>
+
+<!--<head>
+  <script src="{% static "quiz/canvasjs.min.js" %}"></script>
+  <script src="{% static "quiz/jquery-3.2.1.js" %}"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href ="{% static 'quiz/style.css'%}">
+</head> 
+<body>
+  <div class="page-header">
+    <h1>The Worlds Biggest Quiz Database</h1>
+  </div>
+  <div class="mainwindow">
+    
+    {% block menu %}
+    {% endblock menu %}
+    
+    <div class="rightwindow">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </div>
+  <script src="{% static "quiz/startquiz.js" %}"></script>
+</body>
+
+-->

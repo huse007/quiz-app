@@ -1,0 +1,348 @@
+var categories = [];
+var cursorOnDiv = false;
+var num_questions;
+var num_categories;
+var num_most_popular;
+var num_most_difficult;
+var numqincat = {};
+var cattable ="";
+var status;
+function initialize() {    
+    //Get categories
+    console.log("init()");
+    get_categories();
+    $.get("/getstatistics",{},function(receiveddata) {
+	console.log("getstatistics get metode");
+	num_questions = receiveddata["qnumber"];
+	console.log(num_questions);
+	num_categories = receiveddata["cnumber"];
+	numqincat = receiveddata["numqincat"];
+	status = receiveddata["status"];
+	document.getElementById("login").innerHTML =status;
+	console.log("status",status);
+	if(status =="login")
+	    login();
+	for(var key in numqincat){
+	    if(numqincat.hasOwnProperty(key)) {
+		cattable = cattable.concat("-"+key+" "+numqincat[key]+"<br>");
+	    }
+	}
+    }); 
+
+    //loop(0); kall denne på klikk categorye...obs må gjøre query på riktig category 
+
+}
+function clean_screen() {
+    console.log("clean_screen()");
+    if(document.getElementById("hcontainer").style.display=="block")
+	document.getElementById("hcontainer").style.display="none";
+    else if(document.getElementById("ccontainer").style.display=="block")
+	leavecategory();
+}
+function get_categories() {
+    print("get_categories()")
+    send_msg="test";
+    //$.get("/getdata",{"msg":send_msg},function(receiveddata) {                                                                                                
+    $.get("/getdata",{},function(receiveddata) {                                                                                                
+    categories = JSON.parse(receiveddata);
+	printing();
+    });
+        
+}
+function printing() {
+    console.log(categories[0].fields["category_name"]);
+}
+function home() {
+    console.log("home()");
+    window.location.href="/main";
+}
+function main() {
+    console.log("main()");
+}
+function news() {
+    console.log("news()");
+    clean_screen();
+    //Since login block is used initialy, we don't want the
+    //other menus to pop up behind when mouse is moving from
+    //url to lcontainer
+    var l = document.getElementById("lcontainer");
+    if(l.style.display=="block")
+	return;
+	
+    var element = document.getElementById("msg");
+    if(element.style.display=="block"){
+	element.style.display="none";
+    }
+    else{
+	element.style.display="block";
+	var header = document.getElementById("mh2");
+	header.innerHTML = "News";
+	var text = document.getElementById("mc");
+	text.innerHTML = "20.05.2017 : new category : Language<br>20.05.2017 : new category : Food<br>20.05.2017 : new category : Telecom<br>20.05.2017 : release date : 01.06.2017<br>22.05.2017 : new category : Art<br>22.05.2017 : new category : TV<br>23.05.2017 : new category : Economy<br>28.05.2017 : highscore : implemented<br>";
+		text.style.fontFamily="Courier";
+    }
+}
+function contact() {
+    console.log("contact()");
+    clean_screen();
+    //Since login block is used initialy, we don't want the
+    //other menus to pop up behind when mouse is moving from
+    //url to lcontainer
+    var l = document.getElementById("lcontainer");
+    if(l.style.display=="block")
+	return;
+    var element = document.getElementById("msg");
+    if(element.style.display=="block"){
+	element.style.display="none";
+    }
+    else{
+	element.style.display="block";
+	var header = document.getElementById("mh2");
+	header.innerHTML = "Contact";
+	var text = document.getElementById("mc");
+	text.innerHTML = "author : Anders Huse<br>design : Anders Huse<br> mail : huse007@hotmail.com"; 
+	text.style.fontFamily="Courier";
+    }
+    
+}
+function about() {
+    console.log("about()");
+    clean_screen();
+    //Since login block is used initialy, we don't want the
+    //other menus to pop up behind when mouse is moving from
+    //url to lcontainer
+    var l = document.getElementById("lcontainer");
+    if(l.style.display=="block")
+	return;
+    var element = document.getElementById("msg");
+    if(element.style.display=="block"){
+	element.style.display="none";
+    }
+    else{
+	element.style.display="block";
+	var header = document.getElementById("mh2");
+	header.innerHTML = "About";
+	var text = document.getElementById("mc");
+	text.innerHTML = "This is the worlds biggest quiz database. Register for free and get access to thousands of different quizzes.";
+	text.style.fontFamily="Courier";
+    }
+}
+function statistics() {
+    console.log("statistics()");
+    //Since login block is used initialy, we don't want the
+    //other menus to pop up behind when mouse is moving from
+    //url to lcontainer
+    
+    clean_screen();
+    var l = document.getElementById("lcontainer");
+    if(l.style.display=="block")
+	return;
+    var element = document.getElementById("msg");
+    if(element.style.display=="block") {
+	element.style.display="none";
+    }
+    else{
+	element.style.display="block";
+	var header = document.getElementById("mh2");
+	header.innerHTML = "Statistics";
+	var text = document.getElementById("mc");
+	text.innerHTML = "Number of categories: "+num_categories+"<br>Number of questions: "+num_questions+" <br>Most popular: "+numqincat["Math"]+"<br>Most difficult: <br>Category capacity:<br>"+cattable;
+
+	text.style.fontFamily="Courier";
+	console.log("NUMqincat"+numqincat["Math"]);
+    }	    
+}
+function category() {
+    console.log("category()");
+    clean_screen();
+    //Since login block is used initialy, we don't want the
+    //other menus to pop up behind when mouse is moving from
+    //url to lcontainer
+    var l = document.getElementById("lcontainer");
+    if(l.style.display=="block")
+	return;
+    var element = document.getElementById("ccontainer");
+    if(element.style.display=="block"){
+	var x = event.clientX;
+	var y = event.clientY;
+	var elementMouseIsOver = document.elementFromPoint(x, y);
+	if(elementMouseIsOver.id == "ccontainer" || elementMouseIsOver.id =="screen"){
+	}
+	else{
+	    element.style.display="none";
+	}
+    }
+    else{
+	element.style.display="block";
+	var header = document.getElementById("ch2");
+	header.innerHTML = "Category";
+
+    }
+}
+function leavecategory() {
+    console.log("leavecategory()");
+    var element = document.getElementById("ccontainer");
+    if(element.style.display=="block"){
+	element.style.display="none";
+    }
+
+}
+/*function loginuser() {
+    print("login()")
+    window.location.href="/login";
+}*/
+function login() {
+    console.log("login()");
+<!--    window.location.href="/login";-->
+	if(document.getElementById("login").innerHTML=="logout") {
+	    window.location.href="/logout";
+	    return;
+	}
+    var element = document.getElementById("lcontainer");
+    if(element.style.display=="block") {
+	var x = event.clientX;
+	var y = event.clientY;
+	var elementMouseIsOver = document.elementFromPoint(x, y);
+	if(elementMouseIsOver.id == "lcontainer" || elementMouseIsOver.id =="screen"){
+	}
+	else{
+	    element.style.display="none";
+	}
+    }
+    else{
+	element.style.display="block";
+	var header = document.getElementById("lh2");
+	header.innerHTML = "Login";
+
+    }
+
+}
+
+function leavelogin() {
+    console.log("leavelogin()");
+    var element = document.getElementById("lcontainer");
+    if(element.style.display=="block"){
+	element.style.display="none";
+    }
+}
+function gone_off_screen() {
+    var element1 = document.getElementById("msg");
+    var element2 = document.getElementById("ccontainer");
+    var x = event.clientX;
+    var y = event.clientX;
+    var elementMouseIsOver = document.elementFromPoint(x,y);
+    
+    element2.style.display="none";
+}
+function hiscore() {
+    console.log("main.js -> hiscore()");
+    
+    var tmp = document.getElementById("hc");
+    while(tmp.firstChild){
+	tmp.removeChild(tmp.firstChild);
+    }
+    var l = document.getElementById("lcontainer");
+    if(l.style.display=="block")
+	return;
+    var element = document.getElementById("hcontainer");
+    if(element.style.display=="block"){
+	//element.style.display="none";
+	clean_screen();
+
+    }
+    else{
+	console.log("popping up hiscore() når ikke det er noen oppe fra før");
+	element.style.display="block";
+	var header = document.getElementById("hh2");
+	header.innerHTML = "Hi Score";
+	$.get("/gethiscore",function(data){
+	    var hiscore_map = data;
+	    for(var key in hiscore_map){
+		var lista = JSON.parse(hiscore_map[key]);
+		var node =document.createElement("DIV");
+		node.id =key;
+		var title =document.createElement("H3");
+		var header = document.createTextNode(key);
+		title.appendChild(header);
+		node.appendChild(title);
+		var listheader = document.createElement("H4");
+		var listtext = document.createTextNode("\u00A0# pts  user");
+		listheader.appendChild(listtext);
+		node.appendChild(listheader);
+		for(var i = 0; i<10;i++) {
+		    //		for(var i in lista) {
+		    var rad = [];
+		    var index = "";
+		    var ipoints ="";
+		    var uname = "";
+		    var row = "";
+		    if(lista[i] != null) {
+			rad =lista[i].split(" ");
+			var t = parseInt(i);
+			t = t+1;
+			if(t<10)
+			    index ="\u00A0"+t.toString();
+			
+			else
+			    index = t.toString();
+			var ipoints=0;
+			if(rad[0]<10) 
+			    ipoints = "\u00A0"+rad[0];
+			else
+			    ipoints = rad[0];
+			uname = rad[1];
+			row =index+". "+ipoints+" "+uname;
+		    }
+		    else {
+			if(i<9)
+			    row = "\u00A0"+(i+1).toString()+"---------------";
+			else
+			    row =(i+1).toString()+"---------------";
+		    }
+		    
+		    
+		    
+		    var lineElement =document.createElement("P");
+		    var textrow=document.createTextNode(row);
+		    lineElement.appendChild(textrow);
+		    node.append(lineElement);
+		    
+		}
+		document.getElementById("hc").appendChild(node);
+		//node.style.backgroundColor="grey";
+		node.style.fontSize="10px";
+		node.style.padding="10px 10px 10px 10px";
+		node.style.float="Left";
+	    }
+		
+        });
+
+    }
+
+}
+
+function scrollup() {
+    console.log("up");
+    var bg = document.getElementById("hc");
+    document.getElementById("scrolliconcontainerdown").style.visibility="visible";
+    if(bg.scrollTop < bg.scrollHeight-bg.offsetHeight) {
+	bg.scrollTop+=100;
+    }
+    else {
+	document.getElementById("scrolliconcontainerup").style.visibility="hidden";
+
+    }
+}
+function scrolldown() {
+    console.log("down");
+    var bg = document.getElementById("hc");
+    document.getElementById("scrolliconcontainerup").style.visibility="visible";
+    if(bg.scrollTop >= 1){
+	bg.scrollTop-=100;
+    }
+    else {
+	document.getElementById("scrolliconcontainerdown").style.visibility="hidden";
+	
+    }
+}
+

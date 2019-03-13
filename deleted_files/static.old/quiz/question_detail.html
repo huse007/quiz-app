@@ -1,0 +1,12 @@
+{% extends 'quiz/info.html' %}
+{% block content %}
+<div class="question">
+<h2>{{ object.question_name }}</h2>
+<p>{{ object.content }}</p>
+{% for i in valg %}
+<!--<p> {{ choice.choice_name }}</p>-->
+<input type="submit" value="Answer">{{i}}</input><br><br>
+{% endfor %}
+<p>Date: {{ now|date }}</p>
+</div>
+{% endblock %}

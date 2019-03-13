@@ -1,0 +1,23 @@
+{% load static %}
+
+  <head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href ="{% static 'quiz/style.css'%}">
+  </head> 
+<body>
+  <div class="page-header">
+    <h1>Quiz Quizzztoffersen</h1>
+  </div>
+  <div class="choices">
+  <div>
+    <h1>{{ user }}</h1>
+  </div>
+  <form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+  </form>
+  </div>
+</body>
+

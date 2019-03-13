@@ -24,7 +24,7 @@ SECRET_KEY = 'ed6$fgmk2$cuub@1r5&b7+^n@@6gec9yz3xxfna&yz*()xx^j*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['huse007.pythonanywhere.com','www.qdb.no','localhost']
+ALLOWED_HOSTS = ['huse007.pythonanywhere.com','www.qdb.no']
 
 
 # Application definition
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 #Should be true:
-SECURE_SSL_REDIRECT = False
+SECURE_SSL_REDIRECT = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 3600
@@ -124,7 +124,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATIC_ROOT = '/home/huse007/quiz-app/quiz/static'
 #Should be true:
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR,"quiz/static"),os.path.join(BASE_DIR,"quiz/templates"),]
 LOGIN_REDIRECT_URL ='/'
 LOGIN_URL='/login/'
