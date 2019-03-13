@@ -1,7 +1,8 @@
 {% extends 'quiz/main.html' %}
 {% load static %}
 {% block contentframe %}
-<style>
+
+<!--<style>
   li.liste {
   list-style-type:none;  
   }
@@ -61,7 +62,7 @@
   animation-name:qframe_anim;
   animation-duration:2.5s;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);--><!--
   z-index: 1;  
   }
 }
@@ -80,7 +81,7 @@
   animation-name:qframe_anim;
   animation-duration:2.5s;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
+  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);--><!--
   z-index: 1;  
   }
   }
@@ -114,7 +115,7 @@
   }
   @media (min-width: 768px) {
   .cframe {
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);-->
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);--><!--
   }
   }
   @media (max-width: 767px) {
@@ -236,7 +237,7 @@ position:relative;
   animation-name:data_anim;
   animation-duration:2.5s;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
-  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->                                                                                                
+  <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);--><!--                                                                                                
   
   }
   @media (max-width: 767px) {
@@ -296,7 +297,7 @@ position:relative;
   animation-duration:2.5s;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
-  <!-- box-shadow: 10px 10px 5px #888888;-->
+  <!-- box-shadow: 10px 10px 5px #888888;--><!--
   }
   @media (max-width: 767px) {
   .infocontainer {
@@ -309,10 +310,10 @@ position:relative;
   padding:1% 1% 1% 1%;
   font-size:15px;
 <!--  animation-name:info_anim;
-  animation-duration:2.5s;-->
+  animation-duration:2.5s;--><!--
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.3);
 <!--  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);-->
-  <!-- box-shadow: 10px 10px 5px #888888;-->
+  <!-- box-shadow: 10px 10px 5px #888888;--><!--
   }
   }
   .info {
@@ -334,15 +335,16 @@ position:relative;
   opacity:0;
   }
 
-</style>
+  </style>-->
+  
 <div class="datacontainer" id="dataid">
   <div class="data">
-    Time:
+    <p class="text-skill">Time:</p>
     <div id="skillbar">
       <div id="skill">
       </div>
     </div>
-    Progress:
+    <p class="text-data">Progress:</p>
     <div id="progressbar">
       <div id="progress">
       </div>
@@ -351,7 +353,7 @@ position:relative;
 </div>
 <div class="infocontainer" id="infoid">
   <div class="info">
-    Correct:
+    <p class="text-correct">Correct:</p>
     <div class="checkpoints">
       <i class="material-icons" id="check1" style="color:#4ca450;">check_circle</i>
       <i class="material-icons" id="check2" style="color:#4ca450;">check_circle</i>
@@ -374,10 +376,10 @@ position:relative;
   <p id="qt" class="qtext"> 
 </div>
 <div id="cf" class="cframe">
-  <button id="button1" onclick=check(0) class="button"><span></span></button><br>
+  <button id="button1" onclick=check(0) class="button btn-outline"><span></span></button><br>
   <button id="button2" onclick=check(1) class="button"><span></span></button><br>
   <button id="button3" onclick=check(2) class="button"><span></span></button><br>
-  <button id="button4" onclick=try_again() class="button"><span></span></button><br>
+  <button id="button4" onclick=try_again() class="button btn btn-lg"><span></span></button><br>
 </div>
 <script>
   document.getElementById("news").addEventListener("mouseover",hide_elements_on_menu_pop,false);

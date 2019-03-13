@@ -1,514 +1,26 @@
 {% load static %}
 
 <html>
-
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <!--    <script src="{% static " quiz/canvasjs.min.js " %}"></script>-->
 <script src="{% static "quiz/jquery-3.2.1.js" %}"></script>
 <script src="{% static "quiz/main.js" %}"></script>
-
+<link rel="stylesheet" type="text/css" href="{% static "quiz/main.css" %}">
+<link rel="stylesheet" href="{% static "quiz/mainquiz.css" %}">
 <!--<script src="{% static "quiz/rango-ajax.js" %}"></script>-->
-    <!--  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-    <!--  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">-->
-    <!--<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-<!--    <link rel="stylesheet" type="text/css" href="{% static 'quiz/style2.css'%}">-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<style>
-  @-webkit-keyframes banim {
-  0% {opacity:0;}
-  100% {opacity:100;}
-  }
-  @-webkit-keyframes msganim {
-  0% {opacity:0;transform:scale(0);}
-  100% {opacity:0.8;transform:scale(1);}
-  }
-  body {
-  margin: 0px 0px 0px 0px;
-  opacity:100;  
-  overflow:hidden;
-  }
-  .container {
-  position:fixed;
-  background-color:white;
-  margin:0% 0% 0% 0%;
-  height:100%;
-  width:100%;
-  }
-
-  .topsection {
-  margin:0px;
-  padding:0px;
-  top:0px;
-  background-color:#fff;
-  color:#5bc236;
-  height:15%;
-  z-index:10;
-  }
-  .firstrow {
-  margin:0px;
-  padding:0%;
-  clear:both;
-  width:100%;
-  height:60%;
-  }  
-  .title{
-  display:block;
-  padding:0px;
-  float:left;
-  width:80%;
-  height:5%;
-  }
- .menuicon {
-  display:inline;
-  padding:0px 0px 0px 0px;
-  width:10%;
-  float:right;
-  }
-  .firstrow .title p{
-  margin:0px;
-  font-family:'Roboto',sans-serif;  
-  font-size:24px;
-  text-align:center;
-  vertical-align:middle;
-  }
-  @media (max-width: 767px) {
-  .firstrow .title p{
-  font-size:20px;
-  }
-  }
-  .firstrow .menuicon i{
-  font-size:48px;
-  float:right;  
-  }
-  @media (min-width: 768px) {
-  .menuicon {
-  display:none;
-  }
-  }
-  .secondrow {
-  top:0%;
-  height:40%;
-  width:100%;
-  }
-
-  .topnavicon li {
-  overflow: hidden;
-  float:left;
-  display: block;
-  color: f2f2f2;
-  text-align: center;
-  <!--padding: 7px 5px 7px 5px;-->
-  margin:0px;
-  padding:0px;
-  text-decoration: none;
-  font-size: 28px;
-  width: 10%;
-  height:100%;
-  vertical-align: middle;
-  cursor:pointer;
-  }
-  @media (max-width: 767px) {
-  .topnavicon li {
-  overflow: hidden;
-  float:left;
-  display: block;
-  color: f2f2f2;
-  text-align: center;
-  padding: 7px 5px 7px 5px;
-  text-decoration: none;
-  font-size: 10px;
-  width: 5%;
-  align: middle;
-  cursor:pointer;
-  }
-  }
-  .topnavicon li.active {
-  background-color: #f7786b;
-  color: white;
-  }
-  
-  .topnavicon li:hover {
-  background-color: #ddd;
-  color: black;
-  }
-  
-  .bottombar {
-  background-color: #333;
-  display: block;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-  }
-  
-  .bottomtext {
-  float: right;
-  font-size: 17px;
-  padding-right: 20px;
-  color: #ddd;
-  }
-  @media (max-width: 767px) {
-  .bottomtext {
-  float: right;
-  font-size: 6px;
-  padding-right: 20px;
-  color: #ddd;
-  }
-  }
-  ul.listing  {
-  position:relative;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  height:100%;
-
-  }
-  @media (max-width: 767px) {
-  ul.listing  {
-  position:relative;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-  font-size:10px;
-
-  }
-  }
-  li.norm {
-  float:left;
-  cursor:pointer;
-  height:100%;
-  }
-  
-  li p, .dropbtn {
-  display: inline-block;
-  color: #ddd;
-  text-align: center;
-  padding: 6px 16px;
-  text-decoration: none;
-  cursor:pointer;
-  margin:0;
-  height:100%;
-  vertical-align:middle;
-  }
-  
-  @media (max-width: 767px) {
-  li p, .dropbtn {
-  display: inline-block;
-  color: #ddd;
-  text-align: center;
-  padding:2px;
-  text-decoration: none;
-  cursor:pointer;
-  margin:0;
-  }
-  }  
-  
-  li p:hover {
-  color: black;
-  
-  }
-  
-  li p:hover,
-  .dropdown:hover .dropbtn {
-  background-color: #f9f9f9;
-  <!--farge på hover elementer -->color: black;
-  }
-  
-  li.dropdown {
-  display: inline-block;
-  
-  }
-  
-  .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  <!-- farge på dropdown -->min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  }
-  
-  .dropdown-content p {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  }
-  
-  .dropdown-content p:hover {
-  background-color: #ddd;
-  <!--farge på dropdownliste sine elementer -->
-  }
-  
-  .dropdown:hover .dropdown-content {
-  display:block;
-  }
-  
-
-  .bottombar{
-  position:fixed;
-  bottom:0;
-  height:6.5%;
-  z-index:10;
-  }
-  @media (max-width: 767px) {
-  .bottombar{
-  position:fixed;
-  bottom:0;
-  height:3%;
-  z-index:10;
-  }
-  }
-  .screen {
-  position:fixed;
-  top:15%;
-  bottom:6.5%;
-  background-image: url("https://newevolutiondesigns.com/images/freebies/white-wallpaper-11.jpg");
-  heigth:80%;
-  width:100%;
-  animation-name:banim;
-  animation-duration:3s;
-  
-  }
-  .categories_container {
-  position:fixed;
-  display:block;
-  left:20%;
-  top:20%;
-  width:40%;
-  height:40%;
-  background-color:#333;
-  color:#ddd;
-  z-index:100;
-  visibility:hidden;
-  }
-  .categories{
-  position:relative;
-  padding:10% 10% 10% 10%;
-  color:#ddd;
-  font-size:20px;
-  
-  }
-  a {
-  color:#ddd;
-  }
-  .statisticscontainer,.newscontainer,.aboutcontainer{
-  position:fixed;
-  display:block;
-  left:20%;
-  top:20%;
-  width:40%;  
-  background-color:#333;
-  color:#ddd;
-  font-size:25px;
-  z-index:100;
-  display:none;
-  padding:20px 20px 20px 20px;
-  opacity:0.8;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  overflow:auto;
-  height:60%;
-  }
-  @media (max-width: 767px) {
-  .statisticscontainer,.newscontainer,.aboutcontainer{
-  width:100%;
-  left:0%;
-  height:82%;
-  padding:2%;
-  top:15%;
-  }
-  }
-  .scontent,.ncontent,.acontent{
-  margin:0;
-  font-size:15px;
-  height:80%;
-  overflow:auto;
-  }
-  #sh2,#nh2,#ah2 {
-  margin:0;
-  font-size:25px;
-  font-family: 'Gloria Hallelujah', cursive;
-  text-align:center;
-  }
-  .categorycontainer,.logincontainer,.mysitecontainer{
-  position:fixed;
-  display:block;
-  left:10%;
-  top:20%;
-  width:60%;
-  height:50%;
-  background-color:#333;
-  color:#ddd;
-  font-size:15px;
-  z-index:100;
-  display:none;
-  padding:20px 20px 20px 20px;
-  opacity:0.8;
-  font-family:Courier;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  }
-  @media (max-width: 767px) {
-  .logincontainer{
-  left:0%;
-  top:15%;
-  width:96%;
-  height:82%;
-  padding:2%;
-  overflow:auto;
-  }
-  }
-  .hiscorecontainer,.playcontainer,.menucontainer{
-  position:fixed;
-  display:block;
-  left:0%;
-  right:0%;
-  top:15%;
-  background-color:#333;
-  height:75%;
-  color:#ddd;
-  z-index:100;
-  display:none;
-  padding:10px 20px 10px 20px;
-  opacity:0.8;
-
-  font-family:Courier;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  }
-  @media (max-width: 767px) {
-  .hiscorecontainer,.playcontainer,.menucontainer{
-  height:82%;
-  overflow:auto;
-  }
-  }
-  .hcontent::-webkit-scrollbar {
-  display:none;
-  }
-  
-  .hcontent,.pcontent,.mecontent{
-  position:relative;
-  overflow:auto;
-  height:80%;
-  background-color:#595959;
-  width:100%;
-  }
-  .pcontent a,.mecontent p {
-  text-decoration:none;
-  font-family:'Gloria Hallelujah',cursive;
-  text-align:center;
-  width:270px;
-  }
-  @media (max-width: 767px) {
-  .pcontent a {
-  text-decoration:none;
-  font-family:'Gloria Hallelujah',cursive;
-  text-align:center;
-  
-  }
-  }
-  .scrolliconcontainer{
-  width:100%;
-  background-color:#red;
-  color:#ddd;
-  }
-  #scrolliconup,#scrollicondown{
-  position:relative;
-  left:50%;
-  right:10%;
-  font-size:20px;
-  }
-  #scrolliconcontainerdown{
-  visibility:hidden;
-  }
-  
-  .scrolliconcontainer:hover{
-  cursor:pointer;
-  }
-  
-  .scrolliconcontainer:active{
-  background-color:#f2f2f2;
-  color:#333;
-  }
-  #ch2,#lh2,#hh2,#myh2,#ph2,#meh2 {
-  margin:0;
-  font-size:25px;
-  font-family: 'Gloria Hallelujah', cursive;
-  text-align:center;
-  }
-  .categorylist {
-  text-align:left;
-  }
-  th {
-  font-size:20px;
-  }
-  #news,#about,#category,#login,#logout,#mysite,#highscore,#statistics,#play{
-  font-family:Courier;
-  }
-  #scontainer,#ncontainer,#acontainer,#ccontainer,#hcontainer,#mcontainer,#pcontainer,#mecontainer{
-  animation-name:msganim;
-  animation-duration:0.3s;
-  }
-  #news:hover~minicontainer {
-  animation-play-state:running;
-  }
-  #category:hover~categorycontainer{
-  animation-paly-state:running;<!--stavefeil-->
-  }
-  #highscore:hover~hiscorecontainer{
-  animation-name:msganim;
-  animation-duration:0.3s;
-  }
-
-  @media (min-width: 768px) {
-  
-  }
-  @media (max-width: 767px) {
-  .secondrow {
-  display:none;
-  }  
-  #menubutton {
-  display:block;
-  font-size:40px;
-  }
-  }
-#menubutton:active{
-  background-color:#f9f9f9;
-  color:#333;
-}
-  .mecontent p{
-  width:100%;
-  font-size:20px;
-  margin:0px;
-  }  
-  .mecontent p:hover,mecontent p:active{
-  background-color:#f9f9f9;
-  color:black;
-}
-
-.material-icons{
-        -webkit-font-feature-settings: 'liga';
-        -moz-font-feature-settings: 'liga';
-        font-feature-settings: 'liga';
-}
-</style>
-<body>
-  <div class="container">
-    <!-- header and menu are first row elements, links, tabs are second row....all are in topsection-->
+<body> <!--background="{% static "quiz/whitebg.jpg" %}">-->
+  <div class="outercontainer">
     <div class="topsection">
       <div class="firstrow">
-	<div class="title"><p>The World's Biggest Quiz Database</p></div>
+	<div class="title"><p>Super Quiz</p></div>
 	<div class="menuicon" id="menuicondiv"><i class="material-icons" id="menubutton">menu</i></div>
       </div>
       <div class="secondrow">
@@ -529,11 +41,14 @@
 	  <li class="norm" id="mysite-btn"><p id="mysite">My Site</p></li>
 	  <li class="norm" id="highscore-btn"><p id="highscore">Highscore</p></li>
 	  <li class="norm" id="statistics-btn"><p id="statistics">Statistics</p></li>
+          <li class="triangleleft"></li>
+	  <li class="triangleright"></li>
+
 	  <li style="float:right"><p id="login"></p></li>
 	</ul>
       </div>
     </div>
-    <!--screen-->
+    
     <div class="categories_container" id="cat_cont">
       <div class="categories" id="cat" style="visibility:hidden;">
 	<h2>Choose a Category</h2>
@@ -551,7 +66,7 @@
       <div class="aboutcontainer" id="acontainer">
 	<h2 id="ah2"></h2>
 	<div class="acontent" id="ac">
-0;256;0c	</div>	
+	</div>	
       </div>
       <div class="newscontainer" id="ncontainer">
 	<h2 id="nh2"></h2>
@@ -577,14 +92,14 @@
       </div>
       <div class="hiscorecontainer" id="hcontainer">
 	<h1 id="hh2"></h1>
-	<div class="scrolliconcontainer" id="scrolliconcontainerup">
+	<!--<div class="scrolliconcontainer" id="scrolliconcontainerup">
 	  <i class="material-icons" id="scrolliconup">expand_more</i>
+	</div>-->
+	<div class="hcontent row" id="hc">
 	</div>
-	<div class="hcontent" id="hc">
-	</div>
-	<div class="scrolliconcontainer" id="scrolliconcontainerdown">
+	<!--<div class="scrolliconcontainer" id="scrolliconcontainerdown">
 	  <i class="material-icons" id="scrollicondown">expand_less</i>
-	</div>
+	</div>-->
       </div>
       <div class="playcontainer" id="pcontainer">
 	<h1 id="ph2"></h1>
@@ -691,13 +206,13 @@
       {% block contentframe %}
       {% endblock contentframe %}
     </div>
-    <!--bottom-->
-    <div class="bottombar">
+
+<!--    <div class="bottombar">
       <p class="bottomtext">
 	by Anders Huse
       </p>
     </div>
-    
+    -->
   </div>
   <script>
 <!--    var qnumber = JSON.parse('{{ qnumber|escapejs }}'); -->
@@ -730,7 +245,9 @@ document.getElementById("mysite").addEventListener("click",mysite,false);
 document.getElementById("scrolliconcontainerup").addEventListener("click",scrollup,false);
 document.getElementById("scrolliconcontainerdown").addEventListener("click",scrolldown,false);
   </script>
-
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

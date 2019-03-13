@@ -2,7 +2,7 @@
 
 {% block loginblock %}
 <div class="infotext">
-  <h2>Sign up Now</h2>
+  <h2 class="lh2">Sign up Now</h2>
   <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -17,7 +17,7 @@
     {% endfor %}
     </p>
     {% endfor %}
-  <button type="submit">Sign up</button>
+  <button class="btn btn-warning" type="submit">Sign up</button>
   </form>
   <p>If you already have an account, use the <a href="/" class="links">login</a></p>
 </div>
