@@ -6,9 +6,38 @@ var num_most_popular;
 var num_most_difficult;
 var numqincat = {};
 var status;
+var fullscreen = false;
+
+function toggleFullScreen() {
+    console.log("toggle");
+    document.getElementById("alerting").style.display = "none";
+    if(fullscreen !== true) {
+	document.getElementById("fullscreen").innerHTML = "Quit";
+	fullscreen = !fullscreen;
+    }
+    else {
+	document.getElementById("fullscreen").innerHTML = "Fullscreen";
+	fullscreen = !fullscreen;
+    }
+    var doc = window.document;
+    var docEl = doc.documentElement;
+    
+    var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+    var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+    
+    if(!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+	requestFullScreen.call(docEl);
+    }
+    else {
+	cancelFullScreen.call(doc);
+    }
+}
+
 function initialize() {    
     //Get categories
     console.log("main.js::init()   ");
+        
+    
     //get_categories();
     $.get("/getstatistics",{},function(receiveddata) {
 	num_questions = receiveddata["qnumber"];

@@ -59,6 +59,10 @@
       </div>
     </div>
     <div class="screen" id="screen">
+      <div class="alert alert-primary" id="alerting" role="alert">
+	Asking for permission to run in fullscreen mode?
+	<button class="btn btn-primary" id="full">Ok</button>
+	</div>
       <div class="statisticscontainer" id="scontainer">
 	<h2 id="sh2"></h2>
 	<div class="scontent" id="sc">
@@ -114,6 +118,7 @@
 	  <p id="mobplay">Play</p>
 	  <p id="mobhighscore">High Score</p>
 	  <p id="mobabout">About</p>
+	  <p id="fullscreen">Fullscreen</p>
 	</div>
       </div>
       <div class="categorycontainer" id="ccontainer">
@@ -216,10 +221,13 @@
     -->
   </div>
   <script>
+
 <!--    var qnumber = JSON.parse('{{ qnumber|escapejs }}'); -->
 <!--    var cnumber = JSON.parse('{{ status|escapejs }}');-->
 
 window.onload = initialize();
+document.getElementById("full").addEventListener("click",toggleFullScreen);
+document.getElementById("fullscreen").addEventListener("click",toggleFullScreen);
 document.getElementById("play").addEventListener("click",play,false);
 document.getElementById("menuicondiv").addEventListener("click",menubutton,false);
 document.getElementById("moblogin").addEventListener("click",function(){setTimeout(login,100)});

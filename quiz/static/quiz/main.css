@@ -485,6 +485,12 @@ body {
 	/*margin:0;*/
 	margin-bottom:0;
     }
+    #alerting{
+	display:none;
+    }
+    #fullscreen{
+	display:none;
+    }
 }
 /*Mobile*/
 @media  (max-width:1199px) {
@@ -830,7 +836,8 @@ per -11.jpg");
 	}
 	table.customtable{
 	    background-color:white;
-    }	
+	}
+
 	
 }
 
@@ -896,6 +903,7 @@ per -11.jpg");
     background-color:red;
     color:#333;
 }
+
 /*
 .categorylist {
     text-align:left;
