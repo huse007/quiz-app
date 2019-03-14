@@ -8,6 +8,7 @@ var numqincat = {};
 var status;
 var fullscreen = false;
 
+/* not in use */
 function toggleFullScreen() {
     console.log("toggle");
     document.getElementById("alerting").style.display = "none";
