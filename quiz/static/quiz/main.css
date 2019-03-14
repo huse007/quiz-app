@@ -837,6 +837,12 @@ per -11.jpg");
 	table.customtable{
 	    background-color:white;
 	}
+	#alerting{
+	    display:none;
+	}
+	#fullscreen{
+	    display:none;
+	}
 
 	
 }
